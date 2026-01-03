@@ -60,7 +60,7 @@
 	<file filename="chrome_elf.dll" md5="a3a52c120055147ee9b4aa895f2294e7"/>
 	<file filename="d3dcompiler_47.dll" md5="abe034c17e745bb9067ba38c18568880"/>
 	<file filename="Data/boostconfig.lua" md5="088db59bbb0a6dfedc4391978078e7f7"/>
-	<file filename="Data/boostconfig.xml" md5="7c329652a1481854e6fb1363270e504f"/>
+	<file filename="Data/boostconfig.xml" md5="4988501c831a868b80e3fb7a1b5f2f8a"/>
 	<file filename="Data/boostproject.list" md5="47c08fb56e854ea7dcd9318901b79676"/>
 	<file filename="Data/common/effects/flash.px2obj" md5="896f7b3ac7ddac4052307dabbb930f77"/>
 	<file filename="Data/common/effects/rain.px2obj" md5="0958d1ccfff6356bb83aea2d616a2d38"/>

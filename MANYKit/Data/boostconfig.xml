@@ -4,7 +4,7 @@
 			<var width="1136" height="640" multisample="0" rendertypewin="openglsl" rendertypelinux="openglsl" rendertypelinuxarm="opengles" rendertypelinuxarmaarch64="opengles"/>
 		</config>
 		<play>
-			<var playlogicmode="logic" isshowinfo="true" isdatawrite="false" urlversion="http://182.254.213.85:6700/ota" isdoupdate="true" isdoupdatelinux="false" isdoupdatelinuxarm="false" engineupdatepath="MANYKit/MANYKit/" updaterupdatepath="../Updater/"/>
+			<var playlogicmode="logic" isshowinfo="true" isdatawrite="false" urlversion="http://182.254.213.85:6700/ota" isdoupdate="true" isdoupdatelinux="false" isdoupdatelinuxarm="false" engineupdatepath="MANYKit/" updaterupdatepath="../Updater/"/>
 		</play>
 	</app>
 </boost>
