@@ -188,23 +188,26 @@ function engine_OnDownloadedWebEngineUpdaterVersion(strMem)
 
             local engine = data:GetMember("engine"):ToString()
             local updater = data:GetMember("updater"):ToString()
-            local downloadurl = data:GetMember("downloadurl"):ToString()
+            local engine_downloadurl = data:GetMember("engine_downloadurl"):ToString()
+			local engine_subpath = data:GetMember("engine_subpath"):ToString()
             
             print("v_enginelocal:"..localversionengine)
             print("v_updaterlocal:"..localversionupdater)
 
             print("v_engine:"..engine)
             print("v_updater:"..updater)
-            print("v_downloadurl:"..downloadurl)
+            print("engine_downloadurl:"..engine_downloadurl)
+			print("engine_subpath:"..engine_subpath)
 
             local updateURL = ""
-            if ""==downloadurl then
+            if ""==engine_downloadurl then
                 updateURL = PX2_APP:GetVersionURL()
             else
-                updateURL = downloadurl
+                updateURL = engine_downloadurl
             end
             print("updateURL:"..updateURL)
             PX2_APP:SetUpdateURL(updateURL)
+			PX2_APP:SetUpdateSubPath(engine_subpath)
             
             if ""~=engine and""~=updater then
                 isupdaterneedupdate = updater~=localversionupdater

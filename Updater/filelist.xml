@@ -3,9 +3,9 @@
 	<file filename="libvlc.dll" md5="3e891cc1fb6824967d4adf71c5e04d29"/>
 	<file filename="libvlccore.dll" md5="5d771e7016f0de7577e6d16b34f41a46"/>
 	<file filename="PX2Base64.dll" md5="5bb5f266f8c8358b0e4c52034cf627a8"/>
-	<file filename="PX2Ext64.dll" md5="cca067c78ff6a21c9eed6b001f6a6514"/>
-	<file filename="PX2Frame64.dll" md5="8972e0e4f5ee34988a6eb27869c40628"/>
+	<file filename="PX2Ext64.dll" md5="5625356fa49dd6f2a14a49de5b052ece"/>
+	<file filename="PX2Frame64.dll" md5="ac85836acf2c19ade656278246bcb7ee"/>
 	<file filename="Updater64.exe" md5="97ed86ef4816a943272de129720f908e"/>
-	<file filename="UpdaterCMD64.exe" md5="6794e70d7b4c2371abee29f4aa83970d"/>
+	<file filename="UpdaterCMD64.exe" md5="be842d90a8617f474ff26ef5f07be713"/>
 </filelist>
 
