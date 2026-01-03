@@ -1,0 +1,90 @@
+ps_2_0
+// cgc version 3.1.0010, build date Feb  8 2012
+// command line args: -profile ps_2_0
+// source file: terrain_walk_cg.fx
+//vendor NVIDIA Corporation
+//version 3.1.0.10
+//profile ps_2_0
+//program p_terrain_walk
+//semantic p_terrain_walk.UVScale01
+//semantic p_terrain_walk.UVScale23
+//semantic p_terrain_walk.UVScale4
+//semantic p_terrain_walk.FogColorHeight
+//semantic p_terrain_walk.FogColorDist
+//semantic SampleWalk
+//var float4 vertexColor : $vin.COLOR : COL0 : 0 : 1
+//var float2 vertexTCoord0 : $vin.TEXCOORD0 : TEX0 : 1 : 1
+//var float2 vertexTCoord1 : $vin.TEXCOORD1 :  : 2 : 0
+//var float2 vertexTCoord2 : $vin.TEXCOORD2 : TEX2 : 3 : 1
+//var float4 pixelColor : $vout.COLOR : COL : 4 : 1
+//var float4 UVScale01 :  :  : 5 : 0
+//var float4 UVScale23 :  :  : 6 : 0
+//var float4 UVScale4 :  :  : 7 : 0
+//var float4 FogColorHeight :  : c[0] : 8 : 1
+//var float4 FogColorDist :  : c[1] : 9 : 1
+//var sampler2D SampleWalk :  : texunit 0 : -1 : 1
+//const c[2] = 1 0 2 3
+//const c[3] = 4 -1 0.5 1
+//const c[4] = 0.58700001 0.29899999 0.114
+dcl_2d s0
+def c2, 1.00000000, 0.00000000, 2.00000000, 3.00000000
+def c3, 4.00000000, -1.00000000, 0.50000000, 1.00000000
+def c4, 0.58700001, 0.29899999, 0.11400000, 0
+dcl t0.xy
+dcl v0
+dcl t2.xy
+mov r5.x, c2
+mov r6.y, c2.x
+mov r0.x, t0
+add r0.y, -t0, c2.x
+texld r0, r0, s0
+mov r1.w, r0
+mov r0.w, c0
+add r1.xyz, r0, c3.y
+add r2.x, c3, -r0.w
+abs r2.x, r2
+mad r1.xyz, r1, c3.z, c3.w
+cmp r1.xyz, -r2.x, r1, r0
+mul r0, r1, v0
+mov r1.w, c0
+add r3.x, c2, -r1.w
+add r0.xyz, r0, -c0
+mad r0.xyz, t2.y, r0, c0
+add r0.xyz, r0, -c1
+mad r0.xyz, t2.x, r0, c1
+mul r1.x, r0.y, c4
+mad r1.x, r0, c4.y, r1
+mad r1.x, r0.z, c4.z, r1
+abs r2.x, -c0.w
+cmp r2.x, -r2, c2, c2.y
+abs r3.x, r3
+abs_pp r2.x, r2
+mov r6.xz, r1.x
+mov r5.yz, r1.x
+cmp r3.x, -r3, c2, c2.y
+cmp_pp r2.x, -r2, c2, c2.y
+mul_pp r4.x, r2, r3
+abs_pp r3.x, r3
+cmp_pp r3.x, -r3, c2, c2.y
+cmp r4.xyz, -r4.x, r1.x, r5
+mov r1.w, c0
+add r5.x, c2.z, -r1.w
+abs r5.x, r5
+mul_pp r2.x, r2, r3
+cmp r5.x, -r5, c2, c2.y
+mul_pp r3.x, r2, r5
+cmp r3.xyz, -r3.x, r4, r6
+mov r6.xy, r1.x
+mov r1.w, c0
+abs_pp r1.x, r5
+add r4.x, c2.w, -r1.w
+cmp_pp r1.x, -r1, c2, c2.y
+mul_pp r1.x, r2, r1
+abs r4.x, r4
+cmp r2.x, -r4, c2, c2.y
+mov r6.z, c2.x
+mul_pp r1.x, r1, r2
+cmp r1.xyz, -r1.x, r3, r6
+add r1.xyz, r1, -r0
+mad r0.xyz, r1, c1.w, r0
+mov oC0, r0

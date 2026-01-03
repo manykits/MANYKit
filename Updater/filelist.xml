@@ -1,0 +1,11 @@
+<filelist version="1.0.0.0">
+	<file filename="fmod.dll" md5="d39d3cc1119a12dc912fbc33c988b2f4"/>
+	<file filename="libvlc.dll" md5="3e891cc1fb6824967d4adf71c5e04d29"/>
+	<file filename="libvlccore.dll" md5="5d771e7016f0de7577e6d16b34f41a46"/>
+	<file filename="PX2Base64.dll" md5="5bb5f266f8c8358b0e4c52034cf627a8"/>
+	<file filename="PX2Ext64.dll" md5="cca067c78ff6a21c9eed6b001f6a6514"/>
+	<file filename="PX2Frame64.dll" md5="8972e0e4f5ee34988a6eb27869c40628"/>
+	<file filename="Updater64.exe" md5="97ed86ef4816a943272de129720f908e"/>
+	<file filename="UpdaterCMD64.exe" md5="6794e70d7b4c2371abee29f4aa83970d"/>
+</filelist>
+

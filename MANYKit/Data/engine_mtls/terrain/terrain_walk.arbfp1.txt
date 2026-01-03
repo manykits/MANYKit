@@ -1,0 +1,91 @@
+!!ARBfp1.0
+# cgc version 3.1.0010, build date Feb  8 2012
+# command line args: -profile arbfp1
+# source file: terrain_walk_cg.fx
+#vendor NVIDIA Corporation
+#version 3.1.0.10
+#profile arbfp1
+#program p_terrain_walk
+#semantic p_terrain_walk.UVScale01
+#semantic p_terrain_walk.UVScale23
+#semantic p_terrain_walk.UVScale4
+#semantic p_terrain_walk.FogColorHeight
+#semantic p_terrain_walk.FogColorDist
+#semantic SampleWalk
+#var float4 vertexColor : $vin.COLOR : COL0 : 0 : 1
+#var float2 vertexTCoord0 : $vin.TEXCOORD0 : TEX0 : 1 : 1
+#var float2 vertexTCoord1 : $vin.TEXCOORD1 :  : 2 : 0
+#var float2 vertexTCoord2 : $vin.TEXCOORD2 : TEX2 : 3 : 1
+#var float4 pixelColor : $vout.COLOR : COL : 4 : 1
+#var float4 UVScale01 :  :  : 5 : 0
+#var float4 UVScale23 :  :  : 6 : 0
+#var float4 UVScale4 :  :  : 7 : 0
+#var float4 FogColorHeight :  : c[0] : 8 : 1
+#var float4 FogColorDist :  : c[1] : 9 : 1
+#var sampler2D SampleWalk :  : texunit 0 : -1 : 1
+#const c[2] = 0 1 2 3
+#const c[3] = 4 0.5 0.114 0.29899999
+#const c[4] = 0.58700001
+PARAM c[5] = { program.local[0..1],
+		{ 0, 1, 2, 3 },
+		{ 4, 0.5, 0.114, 0.29899999 },
+		{ 0.58700001 } };
+TEMP R0;
+TEMP R1;
+TEMP R2;
+TEMP R3;
+MOV R3.xyz, c[2].yzww;
+ADD R2.x, R3, -c[0].w;
+ABS R2.x, R2;
+MOV R1.w, c[3].x;
+ADD R1.w, R1, -c[0];
+CMP R3.x, -R2, c[2], c[2].y;
+ABS R1.w, R1;
+ADD R3.y, R3, -c[0].w;
+MOV R0.x, fragment.texcoord[0];
+ADD R0.y, -fragment.texcoord[0], c[2];
+TEX R0, R0, texture[0], 2D;
+ADD R1.xyz, R0, -c[2].y;
+MUL R1.xyz, R1, c[3].y;
+ADD R1.xyz, R1, c[2].y;
+CMP R0.xyz, -R1.w, R0, R1;
+MUL R0, R0, fragment.color.primary;
+ADD R0.xyz, R0, -c[0];
+MAD R0.xyz, fragment.texcoord[2].y, R0, c[0];
+ADD R0.xyz, R0, -c[1];
+MAD R1.xyz, fragment.texcoord[2].x, R0, c[1];
+MUL R0.x, R1.y, c[4];
+MAD R0.x, R1, c[3].w, R0;
+MAD R1.w, R1.z, c[3].z, R0.x;
+ABS R0.x, -c[0].w;
+CMP R0.x, -R0, c[2], c[2].y;
+ABS R0.x, R0;
+CMP R2.w, -R0.x, c[2].x, c[2].y;
+MOV R0.yz, R1.w;
+MUL R2.x, R2.w, R3;
+MOV R0.x, c[2].y;
+CMP R2.xyz, -R2.x, R0, R1.w;
+ABS R0.y, R3.x;
+ABS R3.x, R3.y;
+CMP R0.y, -R0, c[2].x, c[2];
+MUL R2.w, R2, R0.y;
+CMP R3.x, -R3, c[2], c[2].y;
+MOV R0.xz, R1.w;
+MUL R3.y, R2.w, R3.x;
+MOV R0.y, c[2];
+CMP R0.xyz, -R3.y, R0, R2;
+MOV R2.xy, R1.w;
+ADD R2.z, R3, -c[0].w;
+ABS R1.w, R3.x;
+ABS R2.z, R2;
+CMP R1.w, -R1, c[2].x, c[2].y;
+CMP R2.z, -R2, c[2].x, c[2].y;
+MUL R1.w, R2, R1;
+MUL R1.w, R1, R2.z;
+MOV R2.z, c[2].y;
+CMP R0.xyz, -R1.w, R2, R0;
+ADD R0.xyz, R0, -R1;
+MAD result.color.xyz, R0, c[1].w, R1;
+MOV result.color.w, R0;
+END
+# 53 instructions, 4 R-regs

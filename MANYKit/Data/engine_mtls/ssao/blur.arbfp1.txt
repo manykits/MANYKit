@@ -1,0 +1,76 @@
+!!ARBfp1.0
+# cgc version 3.1.0010, build date Feb  8 2012
+# command line args: -profile arbfp1
+# source file: blur_cg.fx
+#vendor NVIDIA Corporation
+#version 3.1.0.10
+#profile arbfp1
+#program p_blur
+#semantic p_blur.TexSize
+#semantic SampleBase
+#var float2 vertexTCoord0 : $vin.TEXCOORD0 : TEX0 : 0 : 1
+#var float4 pixelColor : $vout.COLOR : COL : 1 : 1
+#var float4 TexSize :  : c[0] : 2 : 1
+#var sampler2D SampleBase :  : texunit 0 : -1 : 1
+#const c[1] = 0.0625 1 -2 -1
+#const c[2] = -2 0 -1 1
+PARAM c[3] = { program.local[0],
+		{ 0.0625, 1, -2, -1 },
+		{ -2, 0, -1, 1 } };
+TEMP R0;
+TEMP R1;
+TEMP R2;
+MOV R1.z, fragment.texcoord[0].x;
+ADD R1.w, -fragment.texcoord[0].y, c[1].y;
+RCP R0.z, c[0].x;
+RCP R0.w, c[0].y;
+MAD R0.xy, R0.zwzw, c[1].zwzw, R1.zwzw;
+MAD R1.xy, R0.zwzw, c[1].z, R1.zwzw;
+TEX R0.x, R0, texture[0], 2D;
+TEX R1.x, R1, texture[0], 2D;
+ADD R2.x, R1, R0;
+MAD R0.xy, R0.zwzw, c[2], R1.zwzw;
+MAD R1.xy, R0.zwzw, c[1].zyzw, R1.zwzw;
+TEX R0.x, R0, texture[0], 2D;
+ADD R0.x, R2, R0;
+TEX R1.x, R1, texture[0], 2D;
+ADD R2.x, R0, R1;
+MAD R0.xy, R0.zwzw, c[1].wzzw, R1.zwzw;
+ADD R1.xy, -R0.zwzw, R1.zwzw;
+TEX R0.x, R0, texture[0], 2D;
+ADD R0.x, R2, R0;
+TEX R1.x, R1, texture[0], 2D;
+ADD R2.x, R0, R1;
+MAD R0.xy, R0.zwzw, c[2].zyzw, R1.zwzw;
+MAD R1.xy, R0.zwzw, c[1].wyzw, R1.zwzw;
+TEX R0.x, R0, texture[0], 2D;
+ADD R0.x, R2, R0;
+TEX R1.x, R1, texture[0], 2D;
+ADD R2.x, R0, R1;
+MAD R0.xy, R0.zwzw, c[2].yxzw, R1.zwzw;
+MAD R1.xy, R0.zwzw, c[2].yzzw, R1.zwzw;
+TEX R0.x, R0, texture[0], 2D;
+ADD R0.x, R2, R0;
+TEX R1.x, R1, texture[0], 2D;
+ADD R0.y, R0.x, R1.x;
+MAD R1.xy, R0.zwzw, c[2].ywzw, R1.zwzw;
+TEX R0.x, R1.zwzw, texture[0], 2D;
+TEX R1.x, R1, texture[0], 2D;
+ADD R0.x, R0.y, R0;
+ADD R2.x, R0, R1;
+MAD R0.xy, R0.zwzw, c[1].yzzw, R1.zwzw;
+MAD R1.xy, R0.zwzw, c[1].ywzw, R1.zwzw;
+TEX R0.x, R0, texture[0], 2D;
+TEX R1.x, R1, texture[0], 2D;
+ADD R0.x, R2, R0;
+ADD R1.y, R0.x, R1.x;
+MAD R0.xy, R0.zwzw, c[2].wyzw, R1.zwzw;
+ADD R0.zw, R0, R1;
+TEX R0.x, R0, texture[0], 2D;
+TEX R1.x, R0.zwzw, texture[0], 2D;
+ADD R0.x, R1.y, R0;
+ADD R0.x, R0, R1;
+MUL result.color.xyz, R0.x, c[1].x;
+MOV result.color.w, c[1].y;
+END
+# 52 instructions, 3 R-regs

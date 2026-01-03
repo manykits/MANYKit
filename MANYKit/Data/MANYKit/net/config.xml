@@ -1,0 +1,3 @@
+<servers>
+	<server_game name="server_app" ip="127.0.0.1" wwwaddr="" port="28186" nummaxconnect="2000"/>
+</servers>

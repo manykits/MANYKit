@@ -1,0 +1,61 @@
+!!ARBvp1.0
+# cgc version 3.1.0010, build date Feb  8 2012
+# command line args: -profile arbvp1
+# source file: sky_cg.fx
+#vendor NVIDIA Corporation
+#version 3.1.0.10
+#profile arbvp1
+#program v_sky
+#semantic v_sky.PVWMatrix
+#semantic v_sky.VMatrix
+#semantic v_sky.CameraWorldPosition
+#semantic v_sky.FogParam
+#semantic SampleDay
+#semantic SampleSunset
+#semantic SampleNight
+#var float3 modelPosition : $vin.POSITION : POSITION : 0 : 1
+#var float4 clipPosition : $vout.POSITION : HPOS : 1 : 1
+#var float3 vertexTCoord0 : $vout.TEXCOORD0 : TEX0 : 2 : 1
+#var float2 vertexTCoord1 : $vout.TEXCOORD1 : TEX1 : 3 : 1
+#var float4x4 PVWMatrix :  : c[1], 4 : 4 : 1
+#var float4x4 VMatrix :  : c[5], 4 : 5 : 1
+#var float4 CameraWorldPosition :  : c[9] : 6 : 1
+#var float4 FogParam :  : c[10] : 7 : 1
+#var sampler2D SampleDay :  :  : -1 : 0
+#var sampler2D SampleSunset :  :  : -1 : 0
+#var sampler2D SampleNight :  :  : -1 : 0
+#const c[0] = 1 0
+PARAM c[11] = { { 1, 0 },
+		program.local[1..10] };
+TEMP R0;
+TEMP R1;
+TEMP R2;
+ADD R2.y, c[10].w, -c[10].z;
+MOV R1.w, c[0].x;
+MOV R1.xyz, vertex.position;
+DP4 R0.w, R1, c[7];
+MOV R0.z, R0.w;
+DP4 R0.x, R1, c[5];
+DP4 R0.y, R1, c[6];
+ADD R0.xyz, R0, -c[9];
+DP3 R2.x, R0, R0;
+MOV result.texcoord[0].xyz, R0;
+ADD R0.x, c[10].y, -c[10];
+RCP R0.y, R0.x;
+RSQ R2.x, R2.x;
+RCP R2.x, R2.x;
+ADD R0.x, R0.w, -c[10];
+MUL R0.x, R0, R0.y;
+MIN R0.x, R0, c[0];
+RCP R2.y, R2.y;
+ADD R2.x, -R2, c[10].w;
+MUL R2.x, R2, R2.y;
+MIN R2.x, R2, c[0];
+MAX result.texcoord[1].y, R2.x, c[0];
+DP4 result.position.w, R1, c[4];
+DP4 result.position.z, R1, c[3];
+DP4 result.position.y, R1, c[2];
+DP4 result.position.x, R1, c[1];
+MAX result.texcoord[1].x, R0, c[0].y;
+END
+# 27 instructions, 3 R-regs

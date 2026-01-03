@@ -1,0 +1,71 @@
+#version 300 es
+
+in vec3 modelPosition;
+in vec3 modelNormal;
+in vec2 modelTCoord0;
+
+out vec2 vertexTCoord0;
+out vec2 vertexTCoord1;
+out highp vec4 vertexTCoord2;
+out vec4 vertexTCoord3;
+
+uniform mat4 PVWMatrix;
+uniform mat4 WMatrix;
+uniform mat4 ProjectPVBSMatrix_Dir;
+uniform vec4 CameraWorldPosition;
+uniform vec4 LightWorldDVector_Dir;
+uniform vec4 ShineEmissive;
+uniform vec4 ShineAmbient;
+uniform vec4 ShineDiffuse;
+uniform vec4 ShineSpecular;
+uniform vec4 LightAmbient_Dir;
+uniform vec4 LightDiffuse_Dir;
+uniform vec4 LightSpecular_Dir;
+uniform vec4 LightGroup[6];
+uniform vec4 FogParam;
+
+vec3 DoLight_Point_Diffuse(vec3 lightWorldPos, float lightRange, vec3 lightColor, vec3 shineDiff, vec3 vertexWorldPos, vec3 vertexWorldNormal)
+{
+	vec3 lightToVertex = lightWorldPos - vertexWorldPos;
+	float squareDist = dot(lightToVertex, lightToVertex);
+	lightToVertex = normalize(lightToVertex);
+	return lightColor * shineDiff * max(0.0, dot(vertexWorldNormal, lightToVertex)) * max( 0.0, (1.0 - squareDist / lightRange / lightRange) );
+}
+
+void main() 
+{
+	gl_Position = PVWMatrix * vec4(modelPosition, 1.0);
+	
+	vertexTCoord0 = modelTCoord0;
+	
+	vec3 worldPosition = (WMatrix * vec4(modelPosition, 1.0)).xyz;
+	vec3 worldNormal = normalize(mat3(WMatrix) * modelNormal);
+	
+	vec3 viewVector = normalize(CameraWorldPosition.xyz - worldPosition);
+	float dist = sqrt((CameraWorldPosition.x - worldPosition.x)*(CameraWorldPosition.x - worldPosition.x) + (CameraWorldPosition.y - worldPosition.y)*(CameraWorldPosition.y - worldPosition.y) + (CameraWorldPosition.z - worldPosition.z)*(CameraWorldPosition.z - worldPosition.z));
+	
+	vec3 halfVector = normalize((viewVector - LightWorldDVector_Dir.xyz)/2.0);
+	float dotH = dot(worldNormal, halfVector);
+	
+	vertexTCoord3.rgb = ShineEmissive.rgb + LightAmbient_Dir.a *(ShineAmbient.rgb * LightAmbient_Dir.rgb + ShineDiffuse.rgb * LightDiffuse_Dir.rgb * max(dot(worldNormal, -LightWorldDVector_Dir.xyz), 0.0) + ShineSpecular.rgb * LightSpecular_Dir.rgb * pow(max(dotH, 0.0), ShineSpecular.a*LightSpecular_Dir.a));
+	vertexTCoord3.a = ShineEmissive.a;
+	
+	vertexTCoord3.rgb += DoLight_Point_Diffuse(LightGroup[0].xyz, LightGroup[0].w, LightGroup[1].rgb, ShineDiffuse.rgb, worldPosition.xyz, worldNormal.xyz);
+	vertexTCoord3.rgb += DoLight_Point_Diffuse(LightGroup[2].xyz, LightGroup[2].w, LightGroup[3].rgb, ShineDiffuse.rgb, worldPosition.xyz, worldNormal.xyz);
+	vertexTCoord3.rgb += DoLight_Point_Diffuse(LightGroup[4].xyz, LightGroup[4].w, LightGroup[5].rgb, ShineDiffuse.rgb, worldPosition.xyz, worldNormal.xyz);
+
+	float fogValueHeight = (-FogParam.x + worldPosition.z)/(FogParam.y - FogParam.x);
+	fogValueHeight = clamp(fogValueHeight, 0.0, 1.0);
+	float fogValueDist = (FogParam.w - dist)/(FogParam.w - FogParam.z);
+	fogValueDist = clamp(fogValueDist, 0.0, 1.0);
+
+	if (FogParam.y < FogParam.x)
+		fogValueHeight = 1.0;
+	if (FogParam.w < FogParam.z)
+		fogValueDist = 1.0;	
+	
+	vertexTCoord1.x = fogValueHeight;
+	vertexTCoord1.y = fogValueDist;
+	
+	vertexTCoord2 = ProjectPVBSMatrix_Dir * vec4(modelPosition, 1.0);
+}

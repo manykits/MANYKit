@@ -1,0 +1,53 @@
+ps_3_0
+// cgc version 3.1.0010, build date Feb  8 2012
+// command line args: -profile ps_3_0
+// source file: blur_cg.fx
+//vendor NVIDIA Corporation
+//version 3.1.0.10
+//profile ps_3_0
+//program p_blur
+//semantic p_blur.TexSize
+//semantic SampleBase
+//var float2 vertexTCoord0 : $vin.TEXCOORD0 : ATTR0 : 0 : 1
+//var float4 pixelColor : $vout.COLOR : COL : 1 : 1
+//var float4 TexSize :  : c[0] : 2 : 1
+//var sampler2D SampleBase :  : texunit 0 : -1 : 1
+//const c[1] = 1 0 -2 -1
+//const i[0] = 4 0 1
+//const c[2] = 0.0625
+dcl_2d s0
+def c1, 1.00000000, 0.00000000, -2.00000000, -1.00000000
+defi i0, 4, 0, 1, 0
+def c2, 0.06250000, 0, 0, 0
+dcl_texcoord0 v0.xy
+add r1.w, -v0.y, c1.x
+mov r1.z, v0.x
+rcp r0.z, c0.x
+rcp r0.w, c0.y
+mov r2.y, c1
+mov r2.z, c1.y
+loop aL, i0
+add r2.x, r2.z, c1.z
+mov r0.y, c1.z
+mov r0.x, r2
+mad r0.xy, r0, r0.zwzw, r1.zwzw
+texld r0.x, r0, s0
+add r0.y, r2, r0.x
+mov r2.y, c1
+mov r1.y, c1.w
+mov r1.x, r2
+mad r1.xy, r0.zwzw, r1, r1.zwzw
+texld r0.x, r1, s0
+add r2.w, r0.y, r0.x
+mad r0.xy, r0.zwzw, r2, r1.zwzw
+texld r0.x, r0, s0
+mov r1.y, c1.x
+mov r1.x, r2
+mad r1.xy, r0.zwzw, r1, r1.zwzw
+texld r1.x, r1, s0
+add r0.x, r2.w, r0
+add r2.y, r0.x, r1.x
+add r2.z, r2, c1.x
+endloop
+mul oC0.xyz, r2.y, c2.x
+mov oC0.w, c1.x

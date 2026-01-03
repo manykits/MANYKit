@@ -1,0 +1,141 @@
+!!ARBfp1.0
+OPTION ARB_fragment_program_shadow;
+# cgc version 3.1.0010, build date Feb  8 2012
+# command line args: -profile arbfp1
+# source file: std_lightshadow_cg.fx
+#vendor NVIDIA Corporation
+#version 3.1.0.10
+#profile arbfp1
+#program p_std_lightshadow
+#semantic p_std_lightshadow.UVOffset
+#semantic p_std_lightshadow.FogColorHeight
+#semantic p_std_lightshadow.FogColorDist
+#semantic SampleBase
+#semantic SampleShadowDepth
+#var float2 vertexTCoord0 : $vin.TEXCOORD0 : TEX0 : 0 : 1
+#var float2 vertexTCoord1 : $vin.TEXCOORD1 : TEX1 : 1 : 1
+#var float4 vertexTCoord2 : $vin.TEXCOORD2 : TEX2 : 2 : 1
+#var float4 vertexTCoord3 : $vin.TEXCOORD3 : TEX3 : 3 : 1
+#var float4 pixelColor : $vout.COLOR : COL : 4 : 1
+#var float4 UVOffset :  : c[0] : 5 : 1
+#var float4 FogColorHeight :  : c[1] : 6 : 1
+#var float4 FogColorDist :  : c[2] : 7 : 1
+#var sampler2D SampleBase :  : texunit 0 : -1 : 1
+#var sampler2D SampleShadowDepth :  : texunit 1 : -1 : 1
+#var <none>4 $kill_0000 : $vout.$kill : $kill : -1 : 0
+#const c[3] = 0.001 0 1 0.25
+#const c[4] = 2 3 4 0.2
+#const c[5] = 0.0099999998 0.99000001 0.33329999 0.40000001
+#const c[6] = 0.5 0.114 0.29899999 0.58700001
+PARAM c[7] = { program.local[0..2],
+		{ 0.001, 0, 1, 0.25 },
+		{ 2, 3, 4, 0.2 },
+		{ 0.0099999998, 0.99000001, 0.33329999, 0.40000001 },
+		{ 0.5, 0.114, 0.29899999, 0.58700001 } };
+TEMP R0;
+TEMP R1;
+TEMP R2;
+TEMP R3;
+TEMP R4;
+TEMP R5;
+MOV R2.yzw, c[3].y;
+MUL R2.x, -fragment.texcoord[2].w, c[3];
+ADD R0, fragment.texcoord[2], R2;
+TXP R0.x, R0, texture[1], SHADOW2D;
+TXP R3.x, fragment.texcoord[2], texture[1], SHADOW2D;
+ADD R3.y, -fragment.texcoord[1].x, c[3].z;
+MOV R2.zw, c[3].y;
+MOV R2.xy, R2.x;
+ADD R2, fragment.texcoord[2], R2;
+TXP R2.x, R2, texture[1], SHADOW2D;
+ADD R0.y, R3.x, R2.x;
+SGE R2.x, fragment.texcoord[2].y, c[5].y;
+MOV R0.z, fragment.texcoord[0].x;
+ADD R0.w, -fragment.texcoord[0].y, c[3].z;
+ADD R0.zw, R0, c[0].xyxy;
+MUL R0.zw, R0, c[0];
+TEX R4, R0.zwzw, texture[0], 2D;
+SLT R2.w, R4, c[3];
+SGE R0.w, fragment.texcoord[2].x, c[5].y;
+SGE R0.z, c[5].x, fragment.texcoord[2].x;
+ADD_SAT R0.z, R0, R0.w;
+SGE R0.w, c[5].x, fragment.texcoord[2].y;
+ADD_SAT R0.z, R0, R0.w;
+ADD_SAT R0.z, R0, R2.x;
+ABS R0.w, R0.z;
+ABS R0.z, R2.w;
+CMP R3.w, -R0.z, c[3].y, c[3].z;
+CMP R0.w, -R0, c[3].y, c[3].z;
+MUL R0.z, R3.w, R0.w;
+CMP R0.y, -R0.z, R0, c[3].z;
+ADD R0.x, R0.y, R0;
+CMP R0.x, -R0.z, R0, R0.y;
+MUL R0.y, R0.x, c[5].z;
+CMP R0.x, -R0.z, R0.y, R0;
+MAX_SAT R0.y, R0.x, c[5].w;
+CMP R0.x, -R0.z, R0.y, R0;
+MUL R0.xyz, R4, R0.x;
+MOV R4.xyz, c[4];
+MOV R0.w, R4;
+MUL R0, R0, fragment.texcoord[3];
+ADD R3.x, R4.z, -c[1].w;
+ADD R2.xyz, R0, -c[3].z;
+ABS R3.x, R3;
+MUL R2.xyz, R2, c[6].x;
+CMP R3.x, -R3, c[3].y, c[3].z;
+ADD R4.x, R4, -c[1].w;
+ADD R4.y, R4, -c[1].w;
+ABS R4.y, R4;
+ADD R2.xyz, R2, c[3].z;
+MUL R3.x, R3.w, R3;
+CMP R0.xyz, -R3.x, R2, R0;
+MUL R2.x, -R3.y, c[4].w;
+ADD R2.y, R2.x, c[3].z;
+ADD R2.x, -fragment.texcoord[1].y, c[3].z;
+MUL R2.x, -R2, c[4].w;
+ADD R2.x, R2, c[3].z;
+CMP R2.y, -R3.x, R2, fragment.texcoord[1].x;
+CMP R2.x, -R3, R2, fragment.texcoord[1].y;
+ADD R0.xyz, R0, -c[1];
+MAD R0.xyz, R2.y, R0, c[1];
+ADD R0.xyz, R0, -c[2];
+MAD R2.xyz, R2.x, R0, c[2];
+MUL R0.x, R2.y, c[6].w;
+MAD R0.x, R2, c[6].z, R0;
+MAD R4.z, R2, c[6].y, R0.x;
+MOV R0.x, c[3].z;
+ABS R3.x, -c[1].w;
+MOV R0.yz, R4.z;
+ADD R3.y, R0.x, -c[1].w;
+CMP R3.x, -R3, c[3].y, c[3].z;
+ABS R0.x, R3;
+ABS R3.x, R3.y;
+CMP R0.x, -R0, c[3].y, c[3].z;
+MUL R5.x, R3.w, R0;
+CMP R4.w, -R3.x, c[3].y, c[3].z;
+MUL R3.x, R5, R4.w;
+MOV R0.x, c[3].z;
+CMP R3.xyz, -R3.x, R0, R4.z;
+ABS R0.y, R4.w;
+ABS R4.x, R4;
+CMP R4.w, -R4.x, c[3].y, c[3].z;
+CMP R0.y, -R0, c[3], c[3].z;
+MUL R4.x, R5, R0.y;
+MUL R5.x, R4, R4.w;
+MOV R0.xz, R4.z;
+MOV R0.y, c[3].z;
+CMP R0.xyz, -R5.x, R0, R3;
+ABS R3.z, R4.w;
+CMP R3.z, -R3, c[3].y, c[3];
+MUL R3.z, R4.x, R3;
+CMP R4.y, -R4, c[3], c[3].z;
+MUL R4.x, R3.z, R4.y;
+MOV R3.xy, R4.z;
+MOV R3.z, c[3];
+CMP R0.xyz, -R4.x, R3, R0;
+ADD R0.xyz, R0, -R2;
+MAD R0.xyz, R0, c[2].w, R2;
+CMP result.color, -R3.w, R0, R1;
+KIL -R2.w;
+END
+# 99 instructions, 6 R-regs

@@ -1,0 +1,204 @@
+!!ARBfp1.0
+OPTION ARB_fragment_program_shadow;
+# cgc version 3.1.0010, build date Feb  8 2012
+# command line args: -profile arbfp1
+# source file: terrain_lightshadow_cg.fx
+#vendor NVIDIA Corporation
+#version 3.1.0.10
+#profile arbfp1
+#program p_terrain_lightshadow
+#semantic p_terrain_lightshadow.UVScale01
+#semantic p_terrain_lightshadow.UVScale23
+#semantic p_terrain_lightshadow.UVScale4
+#semantic p_terrain_lightshadow.FogColorHeight
+#semantic p_terrain_lightshadow.FogColorDist
+#semantic SampleAlpha
+#semantic Sample0
+#semantic Sample1
+#semantic Sample2
+#semantic Sample3
+#semantic Sample4
+#semantic SampleShadowDepth
+#var float4 vertexColor : $vin.COLOR : COL0 : 0 : 1
+#var float2 vertexTCoord0 : $vin.TEXCOORD0 : TEX0 : 1 : 1
+#var float2 vertexTCoord1 : $vin.TEXCOORD1 : TEX1 : 2 : 1
+#var float2 vertexTCoord2 : $vin.TEXCOORD2 : TEX2 : 3 : 1
+#var float4 vertexTCoord3 : $vin.TEXCOORD3 : TEX3 : 4 : 1
+#var float4 pixelColor : $vout.COLOR : COL : 5 : 1
+#var float4 UVScale01 :  : c[0] : 6 : 1
+#var float4 UVScale23 :  : c[1] : 7 : 1
+#var float4 UVScale4 :  : c[2] : 8 : 1
+#var float4 FogColorHeight :  : c[3] : 9 : 1
+#var float4 FogColorDist :  : c[4] : 10 : 1
+#var sampler2D SampleAlpha :  : texunit 0 : -1 : 1
+#var sampler2D Sample0 :  : texunit 1 : -1 : 1
+#var sampler2D Sample1 :  : texunit 2 : -1 : 1
+#var sampler2D Sample2 :  : texunit 3 : -1 : 1
+#var sampler2D Sample3 :  : texunit 4 : -1 : 1
+#var sampler2D Sample4 :  : texunit 5 : -1 : 1
+#var sampler2D SampleShadowDepth :  : texunit 6 : -1 : 1
+#const c[5] = 0.001 0 1 2
+#const c[6] = 3 4 0.2 0.5
+#const c[7] = 0.0099999998 0.99000001 0.1111 0.40000001
+#const c[8] = 0.114 0.29899999 0.58700001
+PARAM c[9] = { program.local[0..4],
+		{ 0.001, 0, 1, 2 },
+		{ 3, 4, 0.2, 0.5 },
+		{ 0.0099999998, 0.99000001, 0.1111, 0.40000001 },
+		{ 0.114, 0.29899999, 0.58700001 } };
+TEMP R0;
+TEMP R1;
+TEMP R2;
+TEMP R3;
+TEMP R4;
+MOV R3.x, fragment.texcoord[1];
+ADD R3.y, -fragment.texcoord[1], c[5].z;
+MUL R1.xy, R3, c[0].zwzw;
+MUL R3.zw, R3.xyxy, c[1].xyxy;
+TEX R1, R1, texture[2], 2D;
+MOV R0.x, fragment.texcoord[0];
+ADD R0.y, -fragment.texcoord[0], c[5].z;
+MUL R0.xy, R0, c[0];
+TEX R0, R0, texture[1], 2D;
+ADD R2, R1, -R0;
+TEX R1, fragment.texcoord[0], texture[0], 2D;
+MAD R2, R1.x, R2, R0;
+TEX R0, R3.zwzw, texture[3], 2D;
+ADD R0, R0, -R2;
+MAD R2, R1.y, R0, R2;
+MUL R3.zw, R3.xyxy, c[1];
+TEX R0, R3.zwzw, texture[4], 2D;
+ADD R0, R0, -R2;
+MAD R2, R1.z, R0, R2;
+MUL R1.xy, R3, c[2];
+TEX R0, R1, texture[5], 2D;
+ADD R0, R0, -R2;
+MAD R3, R1.w, R0, R2;
+MUL R2.zw, -fragment.texcoord[3].w, c[5].x;
+ADD R0.xyz, R3, -c[5].z;
+MUL R4.xyz, R0, c[6].w;
+MOV R0.x, R2.z;
+MOV R0.yzw, c[5].y;
+ADD R0, fragment.texcoord[3], R0;
+TXP R0.x, R0, texture[6], SHADOW2D;
+MOV R1.xy, R2.z;
+MOV R1.zw, c[5].y;
+ADD R1, fragment.texcoord[3], R1;
+TXP R2.x, R1, texture[6], SHADOW2D;
+TXP R1.x, fragment.texcoord[3], texture[6], SHADOW2D;
+ADD R0.y, R1.x, R2.x;
+ADD R2.x, R0.y, R0;
+MOV R0.x, R2.z;
+MOV R0.y, -R2.w;
+MOV R0.zw, c[5].y;
+ADD R0, fragment.texcoord[3], R0;
+TXP R0.x, R0, texture[6], SHADOW2D;
+ADD R0.x, R2, R0;
+MOV R1.y, R2.w;
+MOV R1.xzw, c[5].y;
+ADD R1, fragment.texcoord[3], R1;
+TXP R1.x, R1, texture[6], SHADOW2D;
+ADD R2.x, R0, R1;
+MOV R0.y, -R2.w;
+MOV R0.xzw, c[5].y;
+ADD R0, fragment.texcoord[3], R0;
+TXP R0.x, R0, texture[6], SHADOW2D;
+ADD R0.x, R2, R0;
+MOV R1.x, -R2.z;
+MOV R1.y, R2.w;
+MOV R1.zw, c[5].y;
+ADD R1, fragment.texcoord[3], R1;
+TXP R1.x, R1, texture[6], SHADOW2D;
+ADD R2.x, R0, R1;
+MOV R0.x, -R2.z;
+MOV R0.yzw, c[5].y;
+ADD R0, fragment.texcoord[3], R0;
+TXP R0.x, R0, texture[6], SHADOW2D;
+ADD R0.x, R2, R0;
+MOV R1.xy, -R2.z;
+MOV R1.zw, c[5].y;
+ADD R1, fragment.texcoord[3], R1;
+TXP R1.x, R1, texture[6], SHADOW2D;
+ADD R0.w, R0.x, R1.x;
+MUL R1.z, R0.w, c[7];
+ADD R0.xyz, R4, c[5].z;
+MOV R4.xy, c[6];
+SGE R1.x, fragment.texcoord[3], c[7].y;
+SGE R0.w, c[7].x, fragment.texcoord[3].x;
+ADD_SAT R0.w, R0, R1.x;
+SGE R1.x, c[7], fragment.texcoord[3].y;
+ADD_SAT R0.w, R0, R1.x;
+SGE R1.y, fragment.texcoord[3], c[7];
+ADD_SAT R0.w, R0, R1.y;
+CMP R1.x, -R0.w, c[5].z, R1.z;
+MAX_SAT R1.y, R1.x, c[7].w;
+ADD R0.w, R4.y, -c[3];
+ABS R1.x, R0.w;
+CMP R0.xyz, -R1.x, R3, R0;
+MUL R0.xyz, R0, R1.y;
+ADD R2.xyz, R0, -c[5].z;
+MUL R2.xyz, R2, c[6].w;
+ADD R2.xyz, R2, c[5].z;
+ADD R1.y, -fragment.texcoord[2], c[5].z;
+MUL R1.y, -R1, c[6].z;
+ADD R1.z, R1.y, c[5];
+CMP R1.w, -R1.x, fragment.texcoord[2].y, R1.z;
+ADD R1.z, -R1.w, c[5];
+ADD R1.y, -fragment.texcoord[2].x, c[5].z;
+MUL R1.y, -R1, c[6].z;
+ADD R1.y, R1, c[5].z;
+CMP R0.xyz, -R1.x, R0, R2;
+MUL R1.z, -R1, c[6];
+ADD R2.x, R1.z, c[5].z;
+CMP R1.y, -R1.x, fragment.texcoord[2].x, R1;
+ADD R1.z, -R1.y, c[5];
+MOV R0.w, R3;
+MUL R0, R0, fragment.color.primary;
+CMP R1.w, -R1.x, R1, R2.x;
+ADD R0.xyz, R0, -c[3];
+MAD R2.xyz, R1.w, R0, c[3];
+MUL R1.z, -R1, c[6];
+ADD R0.x, R1.z, c[5].z;
+ADD R2.xyz, R2, -c[4];
+CMP R0.x, -R1, R1.y, R0;
+MAD R0.xyz, R0.x, R2, c[4];
+MOV R2.zw, c[5];
+ADD R2.x, R2.z, -c[3].w;
+ABS R2.x, R2;
+MUL R1.x, R0.y, c[8].z;
+MAD R1.x, R0, c[8].y, R1;
+MAD R1.w, R0.z, c[8].x, R1.x;
+ABS R1.x, -c[3].w;
+CMP R1.x, -R1, c[5].y, c[5].z;
+ABS R1.x, R1;
+CMP R3.x, -R1, c[5].y, c[5].z;
+CMP R3.y, -R2.x, c[5], c[5].z;
+ADD R2.w, R2, -c[3];
+ABS R2.w, R2;
+MOV R1.yz, R1.w;
+MUL R2.x, R3, R3.y;
+MOV R1.x, c[5].z;
+CMP R2.xyz, -R2.x, R1, R1.w;
+ABS R1.y, R3;
+CMP R1.y, -R1, c[5], c[5].z;
+MUL R3.x, R3, R1.y;
+CMP R2.w, -R2, c[5].y, c[5].z;
+MOV R1.xz, R1.w;
+MOV R1.y, c[5].z;
+MUL R3.y, R3.x, R2.w;
+CMP R2.xyz, -R3.y, R1, R2;
+MOV R1.xy, R1.w;
+ADD R1.w, R4.x, -c[3];
+ABS R1.z, R2.w;
+ABS R1.w, R1;
+CMP R1.z, -R1, c[5].y, c[5];
+MUL R1.z, R3.x, R1;
+CMP R1.w, -R1, c[5].y, c[5].z;
+MUL R1.w, R1.z, R1;
+MOV R1.z, c[5];
+CMP R1.xyz, -R1.w, R1, R2;
+ADD R1.xyz, R1, -R0;
+MAD result.color.xyz, R1, c[4].w, R0;
+MOV result.color.w, R0;
+END
+# 149 instructions, 5 R-regs

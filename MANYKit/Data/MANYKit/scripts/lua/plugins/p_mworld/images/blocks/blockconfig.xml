@@ -1,0 +1,370 @@
+<root name="blocks" texpack="scripts/lua/plugins/p_mworld/images/blocks/blocks.xml">
+	<block type="100" name="block">
+		<side tex="block"/>
+		<side tex="block"/>
+		<side tex="block"/>
+		<side tex="block"/>
+		<side tex="block"/>
+		<side tex="block"/>
+	</block>
+	<block type="101" name="block1">
+		<side tex="block1"/>
+		<side tex="block1"/>
+		<side tex="block1"/>
+		<side tex="block1"/>
+		<side tex="block1"/>
+		<side tex="block1"/>
+	</block>
+	<block type="102" name="block2">
+		<side tex="block2"/>
+		<side tex="block2"/>
+		<side tex="block2"/>
+		<side tex="block2"/>
+		<side tex="block2"/>
+		<side tex="block2"/>
+	</block>
+	<block type="103" name="blockyellow">
+		<side tex="blockyellow"/>
+		<side tex="blockyellow"/>
+		<side tex="blockyellow"/>
+		<side tex="blockyellow"/>
+		<side tex="blockyellow"/>
+		<side tex="blockyellow"/>
+	</block>
+	<block type="104" name="blue">
+		<side tex="blue"/>
+		<side tex="blue"/>
+		<side tex="blue"/>
+		<side tex="blue"/>
+		<side tex="blue"/>
+		<side tex="blue"/>
+	</block>
+	<block type="105" name="carpet">
+		<side tex="carpet"/>
+		<side tex="carpet"/>
+		<side tex="carpet"/>
+		<side tex="carpet"/>
+		<side tex="carpet"/>
+		<side tex="carpet"/>
+	</block>
+	<block type="106" name="carpetflower">
+		<side tex="carpetflower"/>
+		<side tex="carpetflower"/>
+		<side tex="carpetflower"/>
+		<side tex="carpetflower"/>
+		<side tex="carpetflower"/>
+		<side tex="carpetflower"/>
+	</block>
+	<block type="107" name="carpetpurple">
+		<side tex="carpetpurple"/>
+		<side tex="carpetpurple"/>
+		<side tex="carpetpurple"/>
+		<side tex="carpetpurple"/>
+		<side tex="carpetpurple"/>
+		<side tex="carpetpurple"/>
+	</block>
+	<block type="108" name="carpetpurple1">
+		<side tex="carpetpurple1"/>
+		<side tex="carpetpurple1"/>
+		<side tex="carpetpurple1"/>
+		<side tex="carpetpurple1"/>
+		<side tex="carpetpurple1"/>
+		<side tex="carpetpurple1"/>
+	</block>
+	<block type="109" name="carpetred">
+		<side tex="carpetred"/>
+		<side tex="carpetred"/>
+		<side tex="carpetred"/>
+		<side tex="carpetred"/>
+		<side tex="carpetred"/>
+		<side tex="carpetred"/>
+	</block>
+	<block type="110" name="floor">
+		<side tex="floor"/>
+		<side tex="floor"/>
+		<side tex="floor"/>
+		<side tex="floor"/>
+		<side tex="floor"/>
+		<side tex="floor"/>
+	</block>
+	<block type="111" name="flower">
+		<side tex="flower"/>
+		<side tex="flower"/>
+		<side tex="flower"/>
+		<side tex="flower"/>
+		<side tex="flower"/>
+		<side tex="flower"/>
+	</block>
+	<block type="112" name="flower1">
+		<side tex="flower1"/>
+		<side tex="flower1"/>
+		<side tex="flower1"/>
+		<side tex="flower1"/>
+		<side tex="flower1"/>
+		<side tex="flower1"/>
+	</block>
+	<block type="113" name="glass1side">
+		<side tex="grass"/>
+		<side tex="glass1side"/>
+		<side tex="glass1side"/>
+		<side tex="glass1side"/>
+		<side tex="glass1side"/>
+		<side tex="glass1side"/>
+	</block>
+	<block type="114" name="glodenwall">
+		<side tex="glodenwall"/>
+		<side tex="glodenwall"/>
+		<side tex="glodenwall"/>
+		<side tex="glodenwall"/>
+		<side tex="glodenwall"/>
+		<side tex="glodenwall"/>
+	</block>
+	<block type="115" name="glodenwall1r">
+		<side tex="glodenwall1r"/>
+		<side tex="glodenwall1r"/>
+		<side tex="glodenwall1r"/>
+		<side tex="glodenwall1r"/>
+		<side tex="glodenwall1r"/>
+		<side tex="glodenwall1r"/>
+	</block>
+	<block type="116" name="goldblock">
+		<side tex="goldblock"/>
+		<side tex="goldblock"/>
+		<side tex="goldblock"/>
+		<side tex="goldblock"/>
+		<side tex="goldblock"/>
+		<side tex="goldblock"/>
+	</block>
+	<block type="117" name="goldenwall3">
+		<side tex="goldenwall3"/>
+		<side tex="goldenwall3"/>
+		<side tex="goldenwall3"/>
+		<side tex="goldenwall3"/>
+		<side tex="goldenwall3"/>
+		<side tex="goldenwall3"/>
+	</block>
+	<block type="118" name="grass">
+		<side tex="grass"/>
+		<side tex="grass"/>
+		<side tex="grass"/>
+		<side tex="grass"/>
+		<side tex="grass"/>
+		<side tex="grass"/>
+	</block>
+	<block type="119" name="grass1">
+		<side tex="grass1"/>
+		<side tex="grass1"/>
+		<side tex="grass1"/>
+		<side tex="grass1"/>
+		<side tex="grass1"/>
+		<side tex="grass1"/>
+	</block>
+	<block type="120" name="grass2" land="grass">
+		<side tex="grass2side"/>
+		<side tex="grass2side"/>
+		<side tex="grass2side"/>
+		<side tex="grass2side"/>
+		<side tex="grass2"/>
+		<side tex="grass2"/>
+	</block>
+	<block type="121" name="ice" land="snow">
+		<side tex="ice"/>
+		<side tex="ice"/>
+		<side tex="ice"/>
+		<side tex="ice"/>
+		<side tex="ice"/>
+		<side tex="ice"/>
+	</block>
+	<block type="122" name="meta">
+		<side tex="meta"/>
+		<side tex="meta"/>
+		<side tex="meta"/>
+		<side tex="meta"/>
+		<side tex="meta"/>
+		<side tex="meta"/>
+	</block>
+	<block type="123" name="sand" land="sand">
+		<side tex="sand"/>
+		<side tex="sand"/>
+		<side tex="sand"/>
+		<side tex="sand"/>
+		<side tex="sand"/>
+		<side tex="sand"/>
+	</block>
+	<block type="124" name="sand1">
+		<side tex="sand1"/>
+		<side tex="sand1"/>
+		<side tex="sand1"/>
+		<side tex="sand1"/>
+		<side tex="sand1"/>
+		<side tex="sand1"/>
+	</block>
+	<block type="125" name="sand2">
+		<side tex="sand2"/>
+		<side tex="sand2"/>
+		<side tex="sand2"/>
+		<side tex="sand2"/>
+		<side tex="sand2"/>
+		<side tex="sand2"/>
+	</block>
+	<block type="126" name="siverblock4">
+		<side tex="siverblock4"/>
+		<side tex="siverblock4"/>
+		<side tex="siverblock4"/>
+		<side tex="siverblock4"/>
+		<side tex="siverblock4"/>
+		<side tex="siverblock4"/>
+	</block>
+	<block type="127" name="sliverblock3">
+		<side tex="sliverblock3"/>
+		<side tex="sliverblock3"/>
+		<side tex="sliverblock3"/>
+		<side tex="sliverblock3"/>
+		<side tex="sliverblock3"/>
+		<side tex="sliverblock3"/>
+	</block>
+	<block type="128" name="sliversolid">
+		<side tex="sliversolid"/>
+		<side tex="sliversolid"/>
+		<side tex="sliversolid"/>
+		<side tex="sliversolid"/>
+		<side tex="sliversolid"/>
+		<side tex="sliversolid"/>
+	</block>
+	<block type="129" name="solid" land="dirt">
+		<side tex="solid"/>
+		<side tex="solid"/>
+		<side tex="solid"/>
+		<side tex="solid"/>
+		<side tex="solid"/>
+		<side tex="solid"/>
+	</block>
+	<block type="130" name="solid1">
+		<side tex="solid1"/>
+		<side tex="solid1"/>
+		<side tex="solid1"/>
+		<side tex="solid1"/>
+		<side tex="solid1"/>
+		<side tex="solid1"/>
+	</block>
+	<block type="131" name="solid2">
+		<side tex="solid2"/>
+		<side tex="solid2"/>
+		<side tex="solid2"/>
+		<side tex="solid2"/>
+		<side tex="solid2"/>
+		<side tex="solid2"/>
+	</block>
+	<block type="132" name="square">
+		<side tex="square"/>
+		<side tex="square"/>
+		<side tex="square"/>
+		<side tex="square"/>
+		<side tex="square"/>
+		<side tex="square"/>
+	</block>
+	<block type="133" name="star">
+		<side tex="star"/>
+		<side tex="star"/>
+		<side tex="star"/>
+		<side tex="star"/>
+		<side tex="star"/>
+		<side tex="star"/>
+	</block>
+	<block type="134" name="stone" land="stone">
+		<side tex="stone"/>
+		<side tex="stone"/>
+		<side tex="stone"/>
+		<side tex="stone"/>
+		<side tex="stone"/>
+		<side tex="stone"/>
+	</block>
+	<block type="135" name="stone2">
+		<side tex="stone2"/>
+		<side tex="stone2"/>
+		<side tex="stone2"/>
+		<side tex="stone2"/>
+		<side tex="stone2"/>
+		<side tex="stone2"/>
+	</block>
+	<block type="136" name="stone3">
+		<side tex="stone3"/>
+		<side tex="stone3"/>
+		<side tex="stone3"/>
+		<side tex="stone3"/>
+		<side tex="stone3"/>
+		<side tex="stone3"/>
+	</block>
+	<block type="137" name="stone4">
+		<side tex="stone4"/>
+		<side tex="stone4"/>
+		<side tex="stone4"/>
+		<side tex="stone4"/>
+		<side tex="stone4"/>
+		<side tex="stone4"/>
+	</block>
+	<block type="138" name="stone5">
+		<side tex="stone5"/>
+		<side tex="stone5"/>
+		<side tex="stone5"/>
+		<side tex="stone5"/>
+		<side tex="stone5"/>
+		<side tex="stone5"/>
+	</block>
+	<block type="139" name="stonefloor">
+		<side tex="stonefloor"/>
+		<side tex="stonefloor"/>
+		<side tex="stonefloor"/>
+		<side tex="stonefloor"/>
+		<side tex="stonefloor"/>
+		<side tex="stonefloor"/>
+	</block>
+	<block type="140" name="stonepurple">
+		<side tex="stonepurple"/>
+		<side tex="stonepurple"/>
+		<side tex="stonepurple"/>
+		<side tex="stonepurple"/>
+		<side tex="stonepurple"/>
+		<side tex="stonepurple"/>
+	</block>
+	<block type="141" name="stonepurple1">
+		<side tex="stonepurple1"/>
+		<side tex="stonepurple1"/>
+		<side tex="stonepurple1"/>
+		<side tex="stonepurple1"/>
+		<side tex="stonepurple1"/>
+		<side tex="stonepurple1"/>
+	</block>
+	<block type="142" name="wood">
+		<side tex="wood"/>
+		<side tex="wood"/>
+		<side tex="wood"/>
+		<side tex="wood"/>
+		<side tex="wood"/>
+		<side tex="wood"/>
+	</block>
+	<block type="143" name="carpetred">
+		<side tex="wood1side"/>
+		<side tex="wood1side"/>
+		<side tex="wood1side"/>
+		<side tex="wood1side"/>
+		<side tex="wood1top"/>
+		<side tex="wood1top"/>
+	</block>
+	<block type="144" name="carpetred">
+		<side tex="wood2side"/>
+		<side tex="wood2side"/>
+		<side tex="wood2side"/>
+		<side tex="wood2side"/>
+		<side tex="wood1top"/>
+		<side tex="wood1top"/>
+	</block>
+	<block type="145" name="wood2">
+		<side tex="wood2"/>
+		<side tex="wood2"/>
+		<side tex="wood2"/>
+		<side tex="wood2"/>
+		<side tex="wood2"/>
+		<side tex="wood2"/>
+	</block>
+</root>

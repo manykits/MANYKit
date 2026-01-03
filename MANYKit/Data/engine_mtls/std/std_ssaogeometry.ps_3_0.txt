@@ -1,0 +1,25 @@
+ps_3_0
+// cgc version 3.1.0010, build date Feb  8 2012
+// command line args: -profile ps_3_0
+// source file: std_ssaogeometry_cg.fx
+//vendor NVIDIA Corporation
+//version 3.1.0.10
+//profile ps_3_0
+//program p_std_ssaogeometry
+//var float3 fragPos : $vin.TEXCOORD0 : ATTR0 : 0 : 1
+//var float2 texCoords : $vin.TEXCOORD1 :  : 1 : 0
+//var float3 normal : $vin.TEXCOORD2 : ATTR1 : 2 : 1
+//var float4 pixelColor : $vout.COLOR : COL : 3 : 1
+//var float4 pixelColor1 : $vout.COLOR1 : COL1 : 4 : 1
+//var float4 pixelColor2 : $vout.COLOR2 : COL2 : 5 : 1
+//const c[0] = 1 0.60000002
+def c0, 1.00000000, 0.60000002, 0, 0
+dcl_texcoord0 v0.xyz
+dcl_texcoord2 v1.xyz
+dp3 r0.x, v1, v1
+rsq r0.x, r0.x
+mov oC2, c0.yyyx
+mov oC0.xyz, v0
+mul oC1.xyz, r0.x, v1
+mov oC0.w, c0.x
+mov oC1.w, c0.x

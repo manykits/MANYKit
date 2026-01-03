@@ -1,0 +1,47 @@
+!!ARBvp1.0
+# cgc version 3.1.0010, build date Feb  8 2012
+# command line args: -profile arbvp1
+# source file: hotblend_cg.fx
+#vendor NVIDIA Corporation
+#version 3.1.0.10
+#profile arbvp1
+#program v_hotblend
+#semantic v_hotblend.PVWMatrix
+#semantic SampleBase
+#semantic SampleBase1
+#semantic SampleBase2
+#semantic SampleHotGray
+#var float3 modelPosition : $vin.POSITION : POSITION : 0 : 1
+#var float4 modelColor0 : $vin.COLOR : COLOR0 : 1 : 1
+#var float2 modelTCoord0 : $vin.TEXCOORD0 : TEXCOORD0 : 2 : 1
+#var float2 modelTCoord1 : $vin.TEXCOORD1 : TEXCOORD1 : 3 : 1
+#var float2 modelTCoord2 : $vin.TEXCOORD2 : TEXCOORD2 : 4 : 1
+#var float2 modelTCoord3 : $vin.TEXCOORD3 : TEXCOORD3 : 5 : 1
+#var float4 clipPosition : $vout.POSITION : HPOS : 6 : 1
+#var float2 vertexTCoord0 : $vout.TEXCOORD0 : TEX0 : 7 : 1
+#var float2 vertexTCoord1 : $vout.TEXCOORD1 : TEX1 : 8 : 1
+#var float2 vertexTCoord2 : $vout.TEXCOORD2 : TEX2 : 9 : 1
+#var float2 vertexTCoord3 : $vout.TEXCOORD3 : TEX3 : 10 : 1
+#var float4 vertexTCoord4 : $vout.TEXCOORD4 : TEX4 : 11 : 1
+#var float4x4 PVWMatrix :  : c[1], 4 : 12 : 1
+#var sampler2D SampleBase :  :  : -1 : 0
+#var sampler2D SampleBase1 :  :  : -1 : 0
+#var sampler2D SampleBase2 :  :  : -1 : 0
+#var sampler2D SampleHotGray :  :  : -1 : 0
+#const c[0] = 1
+PARAM c[5] = { { 1 },
+		program.local[1..4] };
+TEMP R0;
+MOV R0.w, c[0].x;
+MOV R0.xyz, vertex.position;
+DP4 result.position.w, R0, c[4];
+DP4 result.position.z, R0, c[3];
+DP4 result.position.y, R0, c[2];
+DP4 result.position.x, R0, c[1];
+MOV result.texcoord[4], vertex.color;
+MOV result.texcoord[0].xy, vertex.texcoord[0];
+MOV result.texcoord[1].xy, vertex.texcoord[1];
+MOV result.texcoord[2].xy, vertex.texcoord[2];
+MOV result.texcoord[3].xy, vertex.texcoord[3];
+END
+# 11 instructions, 1 R-regs

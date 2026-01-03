@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker http://texturepacker.com-->
+<!-- $TexturePacker:SmartUpdate:ab5c67fd93d5b3feee1fa0ff99b13576$ -->
+<!--Format:
+n  => name of the sprite
+x  => sprite x pos in texture
+y  => sprite y pos in texture
+w  => sprite width (may be trimmed)
+h  => sprite height (may be trimmed)
+oX => sprite's x-corner offset (only available if trimmed)
+oY => sprite's y-corner offset (only available if trimmed)
+oW => sprite's original width (only available if trimmed)
+oH => sprite's original height (only available if trimmed)
+r => 'y' only set if sprite is rotated
+-->
+<TextureAtlas imagePath="blocks_spec.png" width="2048" height="2048">
+    <sprite n="block1_SPEC" x="984" y="328" w="128" h="128"/>
+    <sprite n="block2_SPEC" x="328" y="328" w="256" h="256"/>
+    <sprite n="block_SPEC" x="856" y="680" w="128" h="128"/>
+    <sprite n="blockyellow_SPEC" x="856" y="504" w="128" h="128"/>
+    <sprite n="carpet_SPEC" x="792" y="1736" w="128" h="128"/>
+    <sprite n="carpetflower_SPEC" x="792" y="1560" w="128" h="128"/>
+    <sprite n="carpetpurple1_SPEC" x="680" y="1384" w="128" h="128"/>
+    <sprite n="carpetred_SPEC" x="680" y="1208" w="128" h="128"/>
+    <sprite n="floor_SPEC" x="680" y="1032" w="128" h="128"/>
+    <sprite n="flower1_SPEC" x="680" y="680" w="128" h="128"/>
+    <sprite n="flower_SPEC" x="680" y="856" w="128" h="128"/>
+    <sprite n="glass1side_SPEC" x="808" y="328" w="128" h="128"/>
+    <sprite n="glodenwall1r_SPEC" x="616" y="1864" w="128" h="128"/>
+    <sprite n="glodenwall_SPEC" x="680" y="504" w="128" h="128"/>
+    <sprite n="goldblock_SPEC" x="1656" y="24" w="256" h="256"/>
+    <sprite n="goldenwall3_SPEC" x="1352" y="24" w="256" h="256"/>
+    <sprite n="goldsolid_SPEC" x="1048" y="24" w="256" h="256"/>
+    <sprite n="grass1_SPEC" x="616" y="1688" w="128" h="128"/>
+    <sprite n="grass2_SPEC" x="744" y="24" w="256" h="256"/>
+    <sprite n="grass2side_SPEC" x="440" y="24" w="256" h="256"/>
+    <sprite n="grass_SPEC" x="232" y="1848" w="160" h="160"/>
+    <sprite n="grassside_SPEC" x="24" y="1848" w="160" h="160"/>
+    <sprite n="ice_SPEC" x="328" y="632" w="128" h="128"/>
+    <sprite n="meta_SPEC" x="856" y="1031" w="126" h="126"/>
+    <sprite n="sand1_SPEC" x="24" y="1544" w="256" h="256"/>
+    <sprite n="sand2_SPEC" x="504" y="1336" w="128" h="128"/>
+    <sprite n="sand_SPEC" x="504" y="1512" w="128" h="128"/>
+    <sprite n="siverblock4_SPEC" x="504" y="1160" w="128" h="128"/>
+    <sprite n="sliverblock3_SPEC" x="856" y="856" w="127" h="127"/>
+    <sprite n="sliversolid_SPEC" x="24" y="1240" w="256" h="256"/>
+    <sprite n="solid1_SPEC" x="504" y="984" w="128" h="128"/>
+    <sprite n="solid2_SPEC" x="504" y="808" w="128" h="128"/>
+    <sprite n="solid_SPEC" x="24" y="936" w="256" h="256"/>
+    <sprite n="stone2_SPEC" x="504" y="632" w="128" h="128"/>
+    <sprite n="stone3_SPEC" x="24" y="632" w="256" h="256"/>
+    <sprite n="stone5_SPEC" x="24" y="328" w="256" h="256"/>
+    <sprite n="stone_SPEC" x="632" y="328" w="128" h="128"/>
+    <sprite n="stonefloor_SPEC" x="440" y="1864" w="128" h="128"/>
+    <sprite n="stonepurple1_SPEC" x="328" y="1512" w="128" h="128"/>
+    <sprite n="stonepurple_SPEC" x="440" y="1688" w="128" h="128"/>
+    <sprite n="wood1side_SPEC" x="328" y="1160" w="128" h="128"/>
+    <sprite n="wood1top_SPEC" x="328" y="984" w="128" h="128"/>
+    <sprite n="wood2_SPEC" x="328" y="808" w="128" h="128"/>
+    <sprite n="wood2side_SPEC" x="24" y="24" w="256" h="256"/>
+    <sprite n="wood_SPEC" x="328" y="1336" w="128" h="128"/>
+</TextureAtlas>

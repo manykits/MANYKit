@@ -1,0 +1,28 @@
+<anims res="model22.px2obj">
+	<anim n="stand" t="站立" v="0,59" loop="true"/>
+	<anim n="walk" t="行走" v="70,102" loop="true"/>
+	<anim n="run" t="奔跑" v="110,130" loop="true"/>	
+	<anim n="walkback" t="后退" v="140,173" loop="true"/>
+	<anim n="standaim" t="步枪站立瞄准" v="208,210" loop="false"/>	
+	<anim n="downaim" t="下蹲瞄准" v="227,240" loop="false"/>	
+	<anim n="walkaim" t="行走瞄准" v="280,315" loop="true"/>	
+	<anim n="runaim" t="奔跑瞄准" v="320,340" loop="true"/>
+	<anim n="jump" t="站立跳" v="351,395"  loop="false"/>
+	<anim n="runjump" t="奔跑跳" v="417,470" loop="false"/>	
+	<anim n="crawl" t="匍匐" v="533,533" loop="false"/>
+	<anim n="crawlforward" t="匍匐前进" v="534,560" loop="true"/>
+	<anim n="standshot" t="站立射击" v="567,576" act="570" loop="false"/>
+	<anim n="crouchshot" t="下蹲射击" v="592,592" act="585" loop="false"/>
+	<anim n="die" t="死亡倒下" v="615,715" loop="false"/>
+	<anim n="dead" t="死亡" v="714,715" loop="false"/>
+	<anim n="nohandheld" t="无手持站立" v="960,961" loop="false"/>	
+	<anim n="cannon" t="抗炮" v="788,788" loop="false"/>	
+	<anim n="cannonup" t="抗炮上" v="807,807" loop="false"/>	
+	<anim n="cannondown" t="抗炮下" v="824,824" loop="false"/>	
+	<anim n="pistol" t="手枪持枪" v="844,844" loop="false"/>	
+	<anim n="pistolup" t="手枪持枪上" v="866,866" loop="false"/>	
+	<anim n="pistoldown" t="手枪持枪下" v="876,876" loop="false"/>	
+	<anim n="rifleup" t="步枪上" v="905,905" loop="false"/>	
+	<anim n="rifledown" t="步枪下" v="922,922" loop="false"/>	
+	<anim n="shootdown" t="趴下射击" v="1010,1010" loop="false"/>	
+</anims>

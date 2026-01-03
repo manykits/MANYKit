@@ -1,0 +1,88 @@
+<material name="hotblend">
+	<technique name="hotblend">
+		<pass name="P0">
+			<shader type="vs" name="hotblend" ni="6" no="6" nc="1" ns="0">
+				<i>
+					<var index="0" name="modelPosition" vt="float3" vs="POSITION"/>
+					<var index="1" name="modelColor0" vt="float4" vs="COLOR0"/>
+					<var index="2" name="modelTCoord0" vt="float2" vs="TEXCOORD0"/>
+					<var index="3" name="modelTCoord1" vt="float2" vs="TEXCOORD1"/>
+					<var index="4" name="modelTCoord2" vt="float2" vs="TEXCOORD2"/>
+					<var index="5" name="modelTCoord3" vt="float2" vs="TEXCOORD2"/>
+				</i>
+				<o>
+					<var index="0" name="clipPosition" vt="float4" vs="POSITION"/>
+					<var index="1" name="vertexTCoord0" vt="float2" vs="TEXCOORD0"/>
+					<var index="2" name="vertexTCoord1" vt="float2" vs="TEXCOORD1"/>
+					<var index="3" name="vertexTCoord2" vt="float2" vs="TEXCOORD2"/>
+					<var index="4" name="vertexTCoord3" vt="float4" vs="TEXCOORD3"/>
+					<var index="5" name="vertexTCoord4" vt="float4" vs="TEXCOORD4"/>
+				</o>
+				<c>
+					<var index="0" name="PVWMatrix" nr="4"/>
+				</c>
+				<p>
+					<var type="cg" file="hotblend_cg.fx"/>
+					<var type="gles2" file="hotblend_gles2_vs.fx"/>
+					<var type="gles3" file="hotblend_gles2_vs.fx"/>
+					<var type="glsl" file="hotblend_glsl_vs.fx"/>
+				</p>
+			</shader>
+			<shader type="ps" name="hotblend" ni="5" no="1" nc="7" ns="4">
+				<i>
+					<var index="0" name="vertexTCoord0" vt="float2" vs="TEXCOORD0"/>
+					<var index="1" name="vertexTCoord1" vt="float2" vs="TEXCOORD1"/>
+					<var index="2" name="vertexTCoord2" vt="float2" vs="TEXCOORD2"/>
+					<var index="3" name="vertexTCoord3" vt="float2" vs="TEXCOORD3"/>
+					<var index="4" name="vertexTCoord4" vt="float4" vs="TEXCOORD4"/>
+				</i>
+				<o>
+					<var index="0" name="pixelColor" vt="float4" vs="COLOR0"/>
+				</o>
+				<c>
+					<var index="0" name="ImageBlend" nr="1"/>
+					<var index="1" name="ShineEmissive" nr="1"/>
+					<var index="2" name="Anchor" nr="1"/>
+					<var index="3" name="Control" nr="1"/>
+					<var index="4" name="Control1" nr="1"/>
+					<var index="5" name="Control2" nr="1"/>
+					<var index="6" name="UVParam" nr="1"/>
+				</c>
+				<s>
+					<var index="0" name="SampleBase" st="sampler2D" sf="LINEAR" sc_0="CLAMP" sc_1="CLAMP"/>
+					<var index="1" name="SampleBase1" st="sampler2D" sf="LINEAR" sc_0="CLAMP" sc_1="CLAMP"/>
+					<var index="2" name="SampleBase2" st="sampler2D" sf="LINEAR" sc_0="CLAMP" sc_1="CLAMP"/>
+					<var index="3" name="SampleHotGray" st="sampler2D" sf="LINEAR" sc_0="CLAMP" sc_1="CLAMP"/>
+				</s>
+				<p>
+					<var type="cg" file="hotblend_cg.fx"/>
+					<var type="gles2" file="hotblend_gles2_ps.fx"/>
+					<var type="gles3" file="hotblend_gles2_ps.fx"/>
+					<var type="glsl" file="hotblend_glsl_ps.fx"/>
+				</p>
+			</shader>
+			<renderproperty>
+				<Alpha>
+					<p param="BlendEnabled" value="true"/>
+					<p param="SrcBlend" value="SBM_SRC_ALPHA"/>
+					<p param="DstBlend" value="DBM_ONE_MINUS_SRC_ALPHA"/>
+					<p param="CompareEnabled" value="false"/>
+					<p param="Compare" value="CM_GEQUAL"/>
+					<p param="Reference" value="0"/>
+				</Alpha>
+				<Depth>
+					<p param="Enabled" value="true"/>
+					<p param="Writable" value="false"/>
+					<p param="Compare" value="CM_LEQUAL"/>
+				</Depth>
+				<Cull>
+					<p param="Enabled" value="true"/>
+					<p param="CCWOrder" value="true"/>
+				</Cull>
+				<Wire>
+					<p param="Enabled" value="false"/>
+				</Wire>
+			</renderproperty>
+		</pass>
+	</technique>
+</material>

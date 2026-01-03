@@ -1,0 +1,9 @@
+<root name="cfg">
+	<item name="isusesound" value="1"/>
+	<item name="isuseenginenet" value="0"/>
+	<item name="isusevoice" value="1"/>
+	<item name="isusevoxel" value="1"/>
+	<item name="isusebluetooth" value="0"/>
+	<item name="resmancreatebackthread" value="0"/>
+</<>
+

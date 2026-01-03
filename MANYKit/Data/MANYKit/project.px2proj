@@ -1,0 +1,12 @@
+<project>
+	<general name="MANYKit" screenorientation="landscape" width="1280" height="720" title="MANYKit" windowstyle="2" layout="1" onlyone="1"/>
+	<scene filename=""/>
+	<render_setting/>
+	<language/>
+	<publish ispublish="false"/>
+	<edit_setting uicamerapercent="1.000000"/>
+	<plugins>
+		<plugin name="PCEF"/>
+	</plugins>
+</project>
+

@@ -1,0 +1,98 @@
+<anims res="">
+	<anim n="nstand" t="无武器待机" v="0,120" loop="true" res="Warrior@nIdle1.px2obj"/>
+	<anim n="nstand1" t="无武器待机2" v="0,120" loop="true" res="Warrior@nIdle2.px2obj"/>
+	<anim n="nwalk_b" t="无武器后退" v="0,34" loop="true" res="Warrior@nWalk_B.px2obj"/>
+	<anim n="nwalk" t="无武器前进" v="0,34" loop="true" res="Warrior@nWalk_F.px2obj"/>
+	<anim n="njumpin" t="无武器跳入开始" v="0,16" loop="true" res="Warrior@nJump_In.px2obj"/>
+	<anim n="njumpout" t="无武器跳入结束" v="0,16" loop="true" res="Warrior@nJump_Out.px2obj"/>
+	<anim n="nrun_b" t="无武器后退" v="0,24" loop="true" res="Warrior@nRun_B.px2obj"/>
+	<anim n="nrun_fast" t="无武器快速奔跑" v="0,15" loop="true" res="Warrior@nRun_Fast.px2obj"/>
+
+	<anim n="run" t="拿或不拿武器奔跑" v="0,24" loop="true" res="Warrior@Run_F.px2obj"/>
+
+	<anim n="stand" t="待机" v="0,92" loop="true" res="Warrior@Idle1.px2obj"/>
+	<anim n="walk" t="向前行走" v="0,34" loop="true" res="Warrior@Walk_F.px2obj"/>
+	<anim n="walk_b" t="后退行走" v="0,34" loop="true" res="Warrior@Walk_B.px2obj"/>
+	
+	<anim n="run_fast" t="拿武器快速奔跑" v="0,15" loop="true" res="Warrior@Run_Fast.px2obj"/>
+	<anim n="run_b" t="拿武器后退奔跑" v="0,24" loop="true" res="Warrior@Run_B.px2obj"/>
+	<anim n="turnleft" t="拿武器左转" v="0,24" loop="true" res="Warrior@Turn_Left.px2obj"/>
+	<anim n="turnright" t="拿武器右转" v="0,24" loop="true" res="Warrior@Turn_Right.px2obj"/>
+
+	<anim n="sheathe" t="收武器" v="0,52" loop="true" res="Warrior@Sheathe.px2obj"/>	
+	<anim n="unsheathe" t="拿武器" v="0,24" loop="true" res="Warrior@UnSheathe.px2obj"/>
+	
+	<anim n="attack1" t="砍击" v="0,24" loop="true" res="Warrior@Attack1.px2obj"/>
+	<anim n="attack2" t="横斩" v="0,26" loop="true" res="Warrior@Attack2.px2obj"/>
+	<anim n="attack3" t="旋转攻击" v="0,38" loop="true" res="Warrior@Attack3.px2obj"/>
+	<anim n="attack4" t="刺击" v="0,32" loop="true" res="Warrior@Attack4.px2obj"/>
+	<anim n="attack5" t="劈砍攻击" v="0,38" loop="true" res="Warrior@Attack5.px2obj"/>
+	
+	<anim n="skill1" t="跳跃按地释放" v="0,76" loop="true" res="Warrior@Skill1.px2obj"/>
+	<anim n="skill2" t="斩击" v="0,48" loop="true" res="Warrior@Skill2.px2obj"/>
+	<anim n="skill3" t="圣光加血" v="0,42" loop="true" res="Warrior@Skill3.px2obj"/>
+	<anim n="skill4" t="抱摔" v="0,42" loop="true" res="Warrior@Skill4.px2obj"/>
+	<anim n="skill5" t="冲刺剑击" v="0,27" loop="true" res="Warrior@Skill5.px2obj"/>
+	<anim n="skill6" t="地铲" v="0,24" loop="true" res="Warrior@Sliding.px2obj"/>
+	
+	<anim n="buff1" t="左手加buf" v="0,28" loop="true" res="Warrior@Buff1.px2obj"/>
+	<anim n="buff2" t="右手加buf" v="0,26" loop="true" res="Warrior@Buff2.px2obj"/>
+	<anim n="buff3" t="加buf" v="0,26" loop="true" res="Warrior@Buff3.px2obj"/>
+	
+	<anim n="say" t="说" v="0,120" loop="true" res="Warrior@Talking1.px2obj"/>
+	<anim n="sayyes" t="肯定" v="0,120" loop="true" res="Warrior@Talking2.px2obj"/>
+	<anim n="sayno" t="否定" v="0,120" loop="true" res="Warrior@Talking3.px2obj"/>
+	
+	<anim n="crouch" t="下蹲" v="0,60" loop="true" res="Warrior@Crouch.px2obj"/>
+	<anim n="sit" t="下蹲待机" v="0,60" loop="true" res="Warrior@Sit.px2obj"/>
+	
+	<anim n="kick1" t="拿武器右踹" v="0,24" loop="true" res="Warrior@Kick1.px2obj"/>
+	<anim n="kick2" t="拿武器左踹" v="0,24" loop="true" res="Warrior@Kick2.px2obj"/>
+	
+	<anim n="death" t="死亡" v="0,50" loop="true" res="Warrior@Death.px2obj"/>
+	
+	<anim n="rolling" t="拿着武器向前翻滚" v="0,18" loop="true" res="Warrior@Rolling.px2obj"/>
+	<anim n="rolling_b" t="拿着武器向后翻滚跳跃" v="0,38" loop="true" res="Warrior@BackRolling.px2obj"/>
+	
+	<anim n="dash_b" t="向后冲撞" v="0,16" loop="true" res="Warrior@Dash_B.px2obj"/>
+	<anim n="dash_f" t="向前冲撞" v="0,15" loop="true" res="Warrior@Dash_F.px2obj"/>
+	
+	<anim n="damage_rise" t="受伤击倒后站立" v="0,24" loop="true" res="Warrior@Damage_Rise.px2obj"/>
+	
+	<anim n="damage_weak" t="受击" v="0,60" loop="true" res="Warrior@Damage_Weak.px2obj"/>
+	<anim n="damage_strong" t="强力受击" v="0,24" loop="true" res="Warrior@Damage_Strong.px2obj"/>
+	<anim n="damage_stun" t="受伤虚弱" v="0,60" loop="true" res="Warrior@Damage_Stun.px2obj"/>
+	
+	<anim n="damage_air_in" t="抓起到击飞开始" v="0,60" loop="true" res="Warrior@Damage_Air_In.px2obj"/>
+	<anim n="damage_air_out" t="抓起到击飞空中落地" v="0,22" loop="true" res="Warrior@Damage_Air_Out.px2obj"/>
+	<anim n="damage_airhit1" t="空中下落" v="0,60" loop="true" res="Warrior@Damage_AirHit1.px2obj"/>
+	<anim n="damage_airhit2" t="空中下落2" v="0,40" loop="true" res="Warrior@Damage_AirHit2.px2obj"/>	
+	<anim n="damage_blocking" t="中断，回复正常" v="0,30" loop="true" res="Warrior@Damage_Blocking.px2obj"/>
+	<anim n="damage_down" t="被抓起到受击躺下" v="0,24" loop="true" res="Warrior@Damage_Down.px2obj"/>
+	<anim n="damage_downhit" t="伤躺下被攻击" v="0,24" loop="true" res="Warrior@Damage_DownHit.px2obj"/>
+	<anim n="damage_downwait" t="受伤躺下等待" v="0,48" loop="true" res="Warrior@Damage_DownWait.px2obj"/>
+	
+	<anim n="onwall" t="上墙" v="0,70" loop="true" res="Warrior@OnWall.px2obj"/>
+
+	<anim n="shieldattack1" t="拿武器盾击" v="0,52" loop="true" res="Warrior@ShieldAttack1.px2obj"/>
+	<anim n="shieldattack2" t="拿武器盾格挡攻击" v="0,32" loop="true" res="Warrior@ShieldAttack2.px2obj"/>
+	<anim n="shieldattack3" t="拿武器盾震攻击" v="0,32" loop="true" res="Warrior@ShieldAttack3.px2obj"/>	
+	<anim n="shieldblock_attack" t="持武器砍击" v="0,20" loop="true" res="Warrior@ShieldBlock_Attack.px2obj"/>	
+	<anim n="shieldblock_in" t="拿武器进入盾格挡" v="0,12" loop="true" res="Warrior@ShieldBlock_In.px2obj"/>
+	<anim n="shieldblock_out" t="拿武器护盾格挡撤销" v="0,20" loop="true" res="Warrior@ShieldBlock_Out.px2obj"/>
+	<anim n="shieldblock_run" t="持武器奔跑" v="0,24" loop="true" res="Warrior@ShieldBlock_Run.px2obj"/>
+	<anim n="shieldblock_wait" t="持武器等待" v="0,30" loop="true" res="Warrior@ShieldBlock_Wait.px2obj"/>
+	<anim n="shieldblock_walk" t="持武器盾格挡行走" v="0,32" loop="true" res="Warrior@ShieldBlock_Walk.px2obj"/>
+	<anim n="shieldblock_damage" t="持武器盾格挡时被攻击" v="0,16" loop="true" res="Warrior@ShieldBlock_Damage.px2obj"/>	
+	<anim n="shieldblock_parrying" t="拿武器格挡破防" v="0,30" loop="true" res="Warrior@ShieldBlock_Parrying.px2obj"/>
+	<anim n="shieldblock_parryattack" t="拿武器格挡破防中间攻击" v="0,35" loop="true" res="Warrior@ShieldBlock_ParryingAttack.px2obj"/>
+	
+	<anim n="jump_in" useage="Warrior@Jump_In" t="跳入开始" v="0,18" loop="true" res="Warrior@Jump_In.px2obj"/>
+	<anim n="jump_out" useage="Warrior@Jump_Out" t="跳入结束" v="0,16" loop="true" res="Warrior@Jump_Out.px2obj"/>
+	<anim n="jump_spin" useage="Warrior@Jump_Spin" t="翻滚?" v="0,16" loop="true" res="Warrior@Jump_Spin.px2obj"/>
+	<anim n="jump_attack1" useage="Warrior@JumpAttack1" t="跳跃攻击" v="0,18" loop="true" res="Warrior@JumpAttack1.px2obj"/>
+	<anim n="jump_attack2" useage="Warrior@JumpAttack2" t="跳跃攻击" v="0,18" loop="true" res="Warrior@JumpAttack2.px2obj"/>
+	<anim n="jump_attack3_in" useage="Warrior@JumpAttack3_In" t="跳跃攻击进入" v="0,20" loop="true" res="Warrior@JumpAttack3_In.px2obj"/>
+	<anim n="jump_attack3_out" useage="Warrior@JumpAttack3_Out" t="跳跃攻击进入后拔出" v="0,46" loop="true" res="Warrior@JumpAttack3_Out.px2obj"/>
+	<anim n="jump_attack4" useage="Warrior@JumpAttack4" t="跳跃攻击" v="0,46" loop="true" res="Warrior@JumpAttack4.px2obj"/>
+</anims>

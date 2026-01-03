@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker http://texturepacker.com-->
+<!-- $TexturePacker:SmartUpdate:a3a9ac92d8cf85d4816bf05de8477b38$ -->
+<!--Format:
+n  => name of the sprite
+x  => sprite x pos in texture
+y  => sprite y pos in texture
+w  => sprite width (may be trimmed)
+h  => sprite height (may be trimmed)
+oX => sprite's x-corner offset (only available if trimmed)
+oY => sprite's y-corner offset (only available if trimmed)
+oW => sprite's original width (only available if trimmed)
+oH => sprite's original height (only available if trimmed)
+r => 'y' only set if sprite is rotated
+-->
+<TextureAtlas imagePath="blocks_nrm.png" width="2048" height="2048">
+    <sprite n="block1_NRM" x="984" y="328" w="128" h="128"/>
+    <sprite n="block2_NRM" x="328" y="328" w="256" h="256"/>
+    <sprite n="block_NRM" x="856" y="680" w="128" h="128"/>
+    <sprite n="blockyellow_NRM" x="856" y="504" w="128" h="128"/>
+    <sprite n="carpet_NRM" x="792" y="1736" w="128" h="128"/>
+    <sprite n="carpetflower_NRM" x="792" y="1560" w="128" h="128"/>
+    <sprite n="carpetpurple1_NRM" x="680" y="1384" w="128" h="128"/>
+    <sprite n="carpetred_NRM" x="680" y="1208" w="128" h="128"/>
+    <sprite n="floor_NRM" x="680" y="1032" w="128" h="128"/>
+    <sprite n="flower1_NRM" x="680" y="680" w="128" h="128"/>
+    <sprite n="flower_NRM" x="680" y="856" w="128" h="128"/>
+    <sprite n="glass1side_NRM" x="808" y="328" w="128" h="128"/>
+    <sprite n="glodenwall1r_NRM" x="616" y="1864" w="128" h="128"/>
+    <sprite n="glodenwall_NRM" x="680" y="504" w="128" h="128"/>
+    <sprite n="goldblock_NRM" x="1656" y="24" w="256" h="256"/>
+    <sprite n="goldenwall3_NRM" x="1352" y="24" w="256" h="256"/>
+    <sprite n="goldsolid_NRM" x="1048" y="24" w="256" h="256"/>
+    <sprite n="grass1_NRM" x="616" y="1688" w="128" h="128"/>
+    <sprite n="grass2_NRM" x="24" y="24" w="256" h="256"/>
+    <sprite n="grass2side_NRM" x="744" y="24" w="256" h="256"/>
+    <sprite n="grass_NRM" x="24" y="1848" w="160" h="160"/>
+    <sprite n="grassside_NRM" x="232" y="1848" w="160" h="160"/>
+    <sprite n="ice_NRM" x="328" y="632" w="128" h="128"/>
+    <sprite n="meta_NRM" x="856" y="1031" w="126" h="126"/>
+    <sprite n="sand1_NRM" x="440" y="24" w="256" h="256"/>
+    <sprite n="sand2_NRM" x="504" y="1336" w="128" h="128"/>
+    <sprite n="sand_NRM" x="504" y="1512" w="128" h="128"/>
+    <sprite n="siverblock4_NRM" x="504" y="1160" w="128" h="128"/>
+    <sprite n="sliverblock3_NRM" x="856" y="856" w="127" h="127"/>
+    <sprite n="sliversolid_NRM" x="24" y="1544" w="256" h="256"/>
+    <sprite n="solid1_NRM" x="504" y="984" w="128" h="128"/>
+    <sprite n="solid2_NRM" x="504" y="808" w="128" h="128"/>
+    <sprite n="solid_NRM" x="24" y="1240" w="256" h="256"/>
+    <sprite n="stone2_NRM" x="504" y="632" w="128" h="128"/>
+    <sprite n="stone3_NRM" x="24" y="936" w="256" h="256"/>
+    <sprite n="stone5_NRM" x="24" y="632" w="256" h="256"/>
+    <sprite n="stone_NRM" x="632" y="328" w="128" h="128"/>
+    <sprite n="stonefloor_NRM" x="440" y="1864" w="128" h="128"/>
+    <sprite n="stonepurple1_NRM" x="328" y="1512" w="128" h="128"/>
+    <sprite n="stonepurple_NRM" x="440" y="1688" w="128" h="128"/>
+    <sprite n="wood1side_NRM" x="328" y="1160" w="128" h="128"/>
+    <sprite n="wood1top_NRM" x="328" y="984" w="128" h="128"/>
+    <sprite n="wood2_NRM" x="328" y="808" w="128" h="128"/>
+    <sprite n="wood2side_NRM" x="24" y="328" w="256" h="256"/>
+    <sprite n="wood_NRM" x="328" y="1336" w="128" h="128"/>
+</TextureAtlas>

@@ -1,0 +1,6 @@
+﻿ID,图标,名称,描述,标记,标记替换模式(0叠加，1替换),增加模式（0持续时间恒定，1持续时间每秒不断作用）,时间,最大生命值,生命值,攻击力,防御力,变身ID,击晕,特效,特效锚点
+ID,Icon,Name,Desc,Tag,TagMode,Mode,Time,MaxHP,HP,AP,DP,ChangeID,Stun,Effect,EffectAnchor
+30000,pdplus,增强护甲,增加护盾20,1,1,"",10000,"","","",20,"","",nenglianghudun,""
+30001,firedplus,增强攻击力,增加护盾20,2,1,"",10000,"","",20,"","","",nenglianghudun,""
+30002,hpplus,增加最大血量,增加最大血量20,3,1,"",10000,20,"","","","","","",""
+30003,woodkplus,加血,加血20,"","",1,10,"",3,"","","","",fanweijiaxue,""

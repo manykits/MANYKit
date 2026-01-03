@@ -1,0 +1,66 @@
+ps_2_0
+// cgc version 3.1.0010, build date Feb  8 2012
+// command line args: -profile ps_2_0
+// source file: blur_cg.fx
+//vendor NVIDIA Corporation
+//version 3.1.0.10
+//profile ps_2_0
+//program p_blur
+//semantic p_blur.UVParam
+//semantic p_blur.Control
+//semantic SampleBase
+//var float2 vertexTCoord0 : $vin.TEXCOORD0 : TEX0 : 0 : 1
+//var float4 pixelColor : $vout.COLOR : COL : 1 : 1
+//var float4 UVParam :  : c[0] : 2 : 1
+//var float4 Control :  : c[1] : 3 : 1
+//var sampler2D SampleBase :  : texunit 0 : -1 : 1
+//const c[2] = 1 0.19459459 2 3
+//const c[3] = 4 0.22702703 0.12162162 0.054054055
+//const c[4] = 0.016216217
+dcl_2d s0
+def c2, 1.00000000, 0.19459459, 2.00000000, 3.00000000
+def c3, 4.00000000, 0.22702703, 0.12162162, 0.05405406
+def c4, 0.01621622, 0, 0, 0
+dcl t0.xy
+mov r0.x, c1
+mov r1.x, t0
+add r1.y, -t0, c2.x
+add r0.x, c2, -r0
+rcp r0.y, c0.y
+mul r8.xy, r0.y, r0.x
+rcp r0.x, c0.x
+mul r7.x, r0, c1
+mov r7.y, r8
+add r0.xy, r1, r7
+add r2.xy, r1, -r7
+mul r4.y, r8.x, c2.z
+mul r4.x, r7, c2.z
+add r3.xy, r1, r4
+mul r6.x, r7, c2.w
+mul r6.y, r8.x, c2.w
+add r5.xy, r1, r6
+add r4.xy, r1, -r4
+add r6.xy, r1, -r6
+mul r7.y, r8.x, c3.x
+mul r7.x, r7, c3
+add r8.xy, r1, -r7
+add r7.xy, r1, r7
+texld r8, r8, s0
+texld r7, r7, s0
+texld r6, r6, s0
+texld r5, r5, s0
+texld r4, r4, s0
+texld r3, r3, s0
+texld r2, r2, s0
+texld r0, r0, s0
+texld r1, r1, s0
+mul r0, r0, c2.y
+mad r0, r1, c3.y, r0
+mad r0, r2, c2.y, r0
+mad r0, r3, c3.z, r0
+mad r0, r4, c3.z, r0
+mad r0, r5, c3.w, r0
+mad r0, r6, c3.w, r0
+mad r0, r7, c4.x, r0
+mad r0, r8, c4.x, r0
+mov oC0, r0

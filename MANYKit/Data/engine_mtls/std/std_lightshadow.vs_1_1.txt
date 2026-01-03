@@ -1,0 +1,159 @@
+vs_1_1
+// cgc version 3.1.0010, build date Feb  8 2012
+// command line args: -profile vs_1_1 -profileopts dcls
+// source file: std_lightshadow_cg.fx
+//vendor NVIDIA Corporation
+//version 3.1.0.10
+//profile vs_1_1
+//program v_std_lightshadow
+//semantic v_std_lightshadow.PVWMatrix
+//semantic v_std_lightshadow.WMatrix
+//semantic v_std_lightshadow.ProjectPVBSMatrix_Dir
+//semantic v_std_lightshadow.CameraWorldPosition
+//semantic v_std_lightshadow.LightWorldDVector_Dir
+//semantic v_std_lightshadow.ShineEmissive
+//semantic v_std_lightshadow.ShineAmbient
+//semantic v_std_lightshadow.ShineDiffuse
+//semantic v_std_lightshadow.ShineSpecular
+//semantic v_std_lightshadow.LightAmbient_Dir
+//semantic v_std_lightshadow.LightDiffuse_Dir
+//semantic v_std_lightshadow.LightSpecular_Dir
+//semantic v_std_lightshadow.LightGroup
+//semantic v_std_lightshadow.FogParam
+//semantic SampleBase
+//semantic SampleShadowDepth
+//var float3 modelPosition : $vin.POSITION0 : ATTR0 : 0 : 1
+//var float3 modelNormal : $vin.NORMAL0 : ATTR1 : 1 : 1
+//var float2 modelTCoord0 : $vin.TEXCOORD0 : ATTR2 : 2 : 1
+//var float4 clipPosition : $vout.POSITION : HPOS : 3 : 1
+//var float2 vertexTCoord0 : $vout.TEXCOORD0 : TEX0 : 4 : 1
+//var float2 vertexTCoord1 : $vout.TEXCOORD1 : TEX1 : 5 : 1
+//var float4 vertexTCoord2 : $vout.TEXCOORD2 : TEX2 : 6 : 1
+//var float4 vertexTCoord3 : $vout.TEXCOORD3 : TEX3 : 7 : 1
+//var float4x4 PVWMatrix :  : c[0], 4 : 8 : 1
+//var float4x4 WMatrix :  : c[4], 4 : 9 : 1
+//var float4x4 ProjectPVBSMatrix_Dir :  : c[8], 4 : 10 : 1
+//var float4 CameraWorldPosition :  : c[12] : 11 : 1
+//var float4 LightWorldDVector_Dir :  : c[13] : 12 : 1
+//var float4 ShineEmissive :  : c[14] : 13 : 1
+//var float4 ShineAmbient :  : c[15] : 14 : 1
+//var float4 ShineDiffuse :  : c[16] : 15 : 1
+//var float4 ShineSpecular :  : c[17] : 16 : 1
+//var float4 LightAmbient_Dir :  : c[18] : 17 : 1
+//var float4 LightDiffuse_Dir :  : c[19] : 18 : 1
+//var float4 LightSpecular_Dir :  : c[20] : 19 : 1
+//var float4 LightGroup[0] :  : c[21] : 20 : 1
+//var float4 LightGroup[1] :  : c[22] : 20 : 1
+//var float4 LightGroup[2] :  : c[23] : 20 : 1
+//var float4 LightGroup[3] :  : c[24] : 20 : 1
+//var float4 LightGroup[4] :  : c[25] : 20 : 1
+//var float4 LightGroup[5] :  : c[26] : 20 : 1
+//var float4 FogParam :  : c[27] : 21 : 1
+//var sampler2D SampleBase :  :  : -1 : 0
+//var sampler2D SampleShadowDepth :  :  : -1 : 0
+//const c[28] = 1 0.5 0
+def c28, 1.00000000, 0.50000000, 0.00000000, 0
+dcl_position0 v0
+dcl_texcoord0 v2
+dcl_normal0 v1
+mov r0.w, c28.x
+mov r0.xyz, v0
+dp4 r4.w, r0, c6
+mov r3.z, r4.w
+dp4 r3.x, r0, c4
+dp4 r3.y, r0, c5
+add r1.xyz, -r3, c12
+dp3 r1.w, r1, r1
+rsq r3.w, r1.w
+mad r1.xyz, r1, r3.w, -c13
+mul r1.xyz, r1, c28.y
+dp3 r1.w, r1, r1
+rsq r1.w, r1.w
+mul r5.xyz, r1.w, r1
+mov r1, c17
+dp3 r4.z, v1, c6
+dp3 r4.x, v1, c4
+dp3 r4.y, v1, c5
+dp3 r2.x, r4, r4
+rsq r5.w, r2.x
+mul r2, c20, r1
+mul r4.xyz, r5.w, r4
+dp3 r1.x, r4, r5
+mov r1.z, r2.w
+max r1.xy, r1.x, c28.z
+lit r1.z, r1.xyzz
+dp3 r2.w, r4, -c13
+mov r5.xyz, c16
+add r1.xyw, -r3.xyzz, c21.xyzz
+max r2.w, r2, c28.z
+mul r5.xyz, c19, r5
+mul r6.xyz, r5, r2.w
+dp3 r2.w, r1.xyww, r1.xyww
+mov r5.xyz, c15
+mad r5.xyz, c18, r5, r6
+mad r2.xyz, r1.z, r2, r5
+rsq r2.w, r2.w
+mul r1.xyz, r2.w, r1.xyww
+dp3 r1.w, r4, r1
+mul r2.xyz, r2, c18.w
+mov r1.xyz, c22
+add r2.xyz, r2, c14
+max r1.w, r1, c28.z
+mul r1.xyz, c16, r1
+mul r1.xyz, r1, r1.w
+rcp r5.x, c21.w
+rcp r1.w, r2.w
+mad r1.w, -r1, r5.x, c28.x
+max r1.w, r1, c28.z
+mad r1.xyz, r1, r1.w, r2
+add r5.xyz, -r3, c23
+dp3 r1.w, r5, r5
+add r2.xyz, -r3, c25
+rsq r2.w, r1.w
+mul r3.xyz, r2.w, r5
+dp3 r1.w, r2, r2
+dp3 r5.x, r4, r3
+rsq r1.w, r1.w
+mul r3.xyz, r1.w, r2
+mov r2.xyz, c24
+max r5.x, r5, c28.z
+mul r2.xyz, c16, r2
+mul r2.xyz, r2, r5.x
+rcp r2.w, r2.w
+rcp r5.y, c23.w
+mad r2.w, -r2, r5.y, c28.x
+max r2.w, r2, c28.z
+mad r1.xyz, r2, r2.w, r1
+dp3 r2.w, r4, r3
+mov r2.xyz, c26
+add r3.x, c27.w, -c27.z
+max r2.w, r2, c28.z
+mul r2.xyz, c16, r2
+mul r2.xyz, r2, r2.w
+rcp r2.w, r3.w
+add r2.w, -r2, c27
+rcp r3.x, r3.x
+mul r3.x, r2.w, r3
+rcp r2.w, c25.w
+rcp r1.w, r1.w
+mad r1.w, -r1, r2, c28.x
+min r2.w, r3.x, c28.x
+max r1.w, r1, c28.z
+mad oT3.xyz, r2, r1.w, r1
+add r1.x, c27.y, -c27
+rcp r1.y, r1.x
+add r1.x, r4.w, -c27
+mul r1.x, r1, r1.y
+min r1.x, r1, c28
+max oT1.y, r2.w, c28.z
+dp4 oPos.w, r0, c3
+dp4 oPos.z, r0, c2
+dp4 oPos.y, r0, c1
+dp4 oPos.x, r0, c0
+max oT1.x, r1, c28.z
+dp4 oT2.w, r0, c11
+dp4 oT2.z, r0, c10
+dp4 oT2.y, r0, c9
+dp4 oT2.x, r0, c8
+mov oT0.xy, v2
+mov oT3.w, c14

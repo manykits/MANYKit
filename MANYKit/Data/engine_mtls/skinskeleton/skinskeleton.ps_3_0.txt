@@ -1,0 +1,96 @@
+ps_3_0
+// cgc version 3.1.0010, build date Feb  8 2012
+// command line args: -profile ps_3_0
+// source file: skinskeleton_cg.fx
+//vendor NVIDIA Corporation
+//version 3.1.0.10
+//profile ps_3_0
+//program p_skinskeleton
+//semantic p_skinskeleton.UVOffset
+//semantic p_skinskeleton.FogColorHeight
+//semantic p_skinskeleton.FogColorDist
+//semantic SampleBase
+//var float2 vertexTCoord0 : $vin.TEXCOORD0 : ATTR0 : 0 : 1
+//var float2 vertexTCoord1 : $vin.TEXCOORD1 : ATTR1 : 1 : 1
+//var float4 vertexTCoord2 : $vin.TEXCOORD2 : ATTR2 : 2 : 1
+//var float4 pixelColor : $vout.COLOR : COL : 3 : 1
+//var float4 UVOffset :  : c[0] : 4 : 1
+//var float4 FogColorHeight :  : c[1] : 5 : 1
+//var float4 FogColorDist :  : c[2] : 6 : 1
+//var sampler2D SampleBase :  : texunit 0 : -1 : 1
+//var <none>4 $kill_0000 : $vout.$kill : $kill : -1 : 0
+//const c[3] = 1 0.25 0 2
+//const c[4] = 3 4 0.2 1
+//const c[5] = 0.58700001 0.29899999 0.114
+dcl_2d s0
+def c3, 1.00000000, 0.25000000, 0.00000000, 2.00000000
+def c4, 3.00000000, 4.00000000, 0.20000000, 1.00000000
+def c5, 0.58700001, 0.29899999, 0.11400000, 0
+dcl_texcoord1 v1.xy
+dcl_texcoord0 v0.xy
+dcl_texcoord2 v2
+mov r0.x, v0
+add r0.y, -v0, c3.x
+add r0.xy, r0, c0
+texld r0, r0, s0
+mov r1, r0
+if_lt r0.w, c3.y
+mov_pp r0, -c3.x
+texkill r0.xyzw
+else
+mov r0.x, c1.w
+add r0.x, c4.y, -r0
+abs r2.x, r0
+cmp r0, -r2.x, c3.x, r1
+mul r0, r0, v2
+add r3.xyz, r0, -c1
+add r1.x, -v1, c3
+mad r1.x, -r1, c4.z, c4.w
+cmp r0.y, -r2.x, r1.x, v1.x
+mad r1.xyz, r0.y, r3, c1
+add r0.x, -v1.y, c3
+mad r0.x, -r0, c4.z, c4.w
+cmp r0.x, -r2, r0, v1.y
+add r1.xyz, r1, -c2
+mad r1.xyz, r0.x, r1, c2
+mul r0.x, r1.y, c5
+mad r0.x, r1, c5.y, r0
+mad r3.x, r1.z, c5.z, r0
+mov r0.x, c1.w
+mov r0.yz, r3.x
+add r2.x, c3, -r0
+abs r1.w, -c1
+cmp r0.x, -r1.w, c3, c3.z
+abs r1.w, r2.x
+cmp r2.w, -r1, c3.x, c3.z
+abs_pp r0.x, r0
+cmp_pp r1.w, -r0.x, c3.x, c3.z
+mul_pp r2.x, r1.w, r2.w
+mov r0.x, c3
+cmp r2.xyz, -r2.x, r3.x, r0
+mov r0.y, c1.w
+add r3.y, c3.w, -r0
+abs_pp r0.y, r2.w
+abs r2.w, r3.y
+cmp_pp r0.y, -r0, c3.x, c3.z
+mul_pp r1.w, r1, r0.y
+cmp r2.w, -r2, c3.x, c3.z
+mul_pp r3.y, r1.w, r2.w
+mov r0.xz, r3.x
+mov r0.y, c3.x
+cmp r2.xyz, -r3.y, r2, r0
+mov r0.xy, r3.x
+mov r0.z, c1.w
+abs_pp r2.w, r2
+add r3.x, c4, -r0.z
+cmp_pp r0.z, -r2.w, c3.x, c3
+mul_pp r1.w, r1, r0.z
+abs r2.w, r3.x
+cmp r2.w, -r2, c3.x, c3.z
+mov r0.z, c3.x
+mul_pp r1.w, r1, r2
+cmp r0.xyz, -r1.w, r2, r0
+add r0.xyz, r0, -r1
+mad oC0.xyz, r0, c2.w, r1
+mov oC0.w, r0
+endif

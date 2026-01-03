@@ -1,0 +1,80 @@
+ps_3_0
+// cgc version 3.1.0010, build date Feb  8 2012
+// command line args: -profile ps_3_0
+// source file: night_cg.fx
+//vendor NVIDIA Corporation
+//version 3.1.0.10
+//profile ps_3_0
+//program p_night
+//semantic p_night.UVParam
+//semantic p_night.ShineEmissive
+//semantic p_night.Control
+//semantic SampleBase
+//var float2 vertexTCoord0 : $vin.TEXCOORD0 : ATTR0 : 0 : 1
+//var float4 vertexTCoord1 : $vin.TEXCOORD1 : ATTR1 : 1 : 1
+//var float4 pixelColor : $vout.COLOR : COL : 2 : 1
+//var float4 UVParam :  : c[0] : 3 : 1
+//var float4 ShineEmissive :  : c[1] : 4 : 1
+//var float4 Control :  : c[2] : 5 : 1
+//var sampler2D SampleBase :  : texunit 0 : -1 : 1
+//const c[3] = 1 0 2 3
+//const c[4] = -0.5 0.58700001 0.29899999 0.114
+dcl_2d s0
+def c3, 1.00000000, 0.00000000, 2.00000000, 3.00000000
+def c4, -0.50000000, 0.58700001, 0.29899999, 0.11400000
+dcl_texcoord0 v0.xy
+dcl_texcoord1 v1
+mov r1.x, c2
+add r1.w, c4.x, r1.x
+abs r2.w, -c2
+mov r0.x, v0
+add r0.y, -v0, c3.x
+mad r0.xy, r0, c0, c0.zwzw
+texld r0, r0, s0
+add r1.xyz, r0, c4.x
+mul r1.xyz, r1, r1.w
+mad r1.xyz, r1, c3.z, r0
+mul r1.w, r1.y, c4.y
+mad r1.w, r1.x, c4.z, r1
+mad r1.w, r1.z, c4, r1
+abs r2.x, -c2.w
+cmp r2.xyz, -r2.x, r1.w, r0
+mov r0.x, c2.w
+add r3.x, c3, -r0
+cmp r0.x, -r2.w, c3, c3.y
+abs r2.w, r3.x
+mov r0.yz, r1.w
+cmp r3.x, -r2.w, c3, c3.y
+abs_pp r0.x, r0
+cmp_pp r2.w, -r0.x, c3.x, c3.y
+mul_pp r3.y, r2.w, r3.x
+mov r0.x, c3
+cmp r2.xyz, -r3.y, r2, r0
+mov r0.y, c2.w
+add r3.y, c3.z, -r0
+abs_pp r0.y, r3.x
+abs r3.x, r3.y
+cmp_pp r0.y, -r0, c3.x, c3
+mul_pp r2.w, r2, r0.y
+cmp r3.x, -r3, c3, c3.y
+mul_pp r3.y, r2.w, r3.x
+mov r0.xz, r1.w
+mov r0.y, c3.x
+cmp r0.xyz, -r3.y, r2, r0
+mov r2.xy, r1.w
+abs_pp r2.z, r3.x
+mov r1.w, c2
+add r3.x, c3.w, -r1.w
+cmp_pp r1.w, -r2.z, c3.x, c3.y
+abs r2.z, r3.x
+mul_pp r1.w, r2, r1
+cmp r2.w, -r2.z, c3.x, c3.y
+mul_pp r1.w, r1, r2
+mov r2.z, c3.x
+cmp r0.xyz, -r1.w, r0, r2
+mov r1.w, c2.y
+add r0.xyz, r0, -r1
+add r1.w, c3.x, -r1
+mad r0.xyz, r1.w, r0, r1
+mul r0, r0, v1
+mul oC0, r0, c1

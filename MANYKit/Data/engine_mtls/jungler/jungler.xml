@@ -1,0 +1,183 @@
+<material name="jungler">
+	<technique name="jungler_light">
+		<pass name="P0">
+			<shader type="vs" name="jungler_light" ni="3" no="4" nc="14" ns="0">
+				<i>
+					<var index="0" name="modelPosition" vt="float3" vs="POSITION"/>
+					<var index="1" name="modelNormal" vt="float3" vs="NORMAL"/>
+					<var index="2" name="modelTCoord0" vt="float2" vs="TEXCOORD0"/>
+				</i>
+				<o>
+					<var index="0" name="clipPosition" vt="float4" vs="POSITION"/>
+					<var index="2" name="vertexTCoord0" vt="float2" vs="TEXCOORD0"/>
+					<var index="3" name="vertexTCoord1" vt="float2" vs="TEXCOORD1"/>
+					<var index="3" name="vertexTCoord2" vt="float4" vs="TEXCOORD2"/>
+				</o>
+				<c>
+					<var index="0" name="PVWMatrix" nr="4"/>
+					<var index="1" name="WMatrix" nr="4"/>
+					<var index="2" name="CameraWorldPosition" nr="1"/>
+					<var index="3" name="LightWorldDVector_Dir" nr="1"/>
+					<var index="4" name="ShineEmissive" nr="1"/>
+					<var index="5" name="ShineAmbient" nr="1"/>
+					<var index="6" name="ShineDiffuse" nr="1"/>
+					<var index="7" name="ShineSpecular" nr="1"/>
+					<var index="8" name="LightAmbient_Dir" nr="1"/>
+					<var index="9" name="LightDiffuse_Dir" nr="1"/>
+					<var index="10" name="LightSpecular_Dir" nr="1"/>
+					<var index="11" name="LightGroup" nr="9"/>
+					<var index="12" name="FogParam" nr="1"/>
+					<var index="13" name="User" nr="1"/>
+				</c>
+				<p>
+					<var type="cg" file="jungler_light_cg.fx"/>
+					<var type="gles2" file="jungler_light_gles2_vs.fx"/>
+					<var type="gles3" file="jungler_light_gles2_vs.fx"/>
+					<var type="glsl" file="jungler_light_glsl_vs.fx"/>
+				</p>
+			</shader>
+			<shader type="ps" name="jungler_light" ni="3" no="2" nc="3" ns="1">
+				<i>
+					<var index="0" name="vertexTCoord0" vt="float2" vs="TEXCOORD0"/>
+					<var index="1" name="vertexTCoord1" vt="float2" vs="TEXCOORD1"/>
+					<var index="2" name="vertexTCoord2" vt="float4" vs="TEXCOORD2"/>
+				</i>
+				<o>
+					<var index="0" name="pixelColor" vt="float4" vs="COLOR0"/>
+					<var index="1" name="pixelColor1" vt="float4" vs="COLOR1"/>
+				</o>
+				<c>
+					<var index="0" name="UVOffset" nr="1"/>
+					<var index="1" name="FogColorHeight" nr="1"/>
+					<var index="2" name="FogColorDist" nr="1"/>
+				</c>
+				<s>
+					<var index="0" name="SampleBase" st="sampler2D" sf="LINEAR_LINEAR" sc_0="CLAMP" sc_1="CLAMP"/>
+				</s>
+				<p>
+					<var type="cg" file="jungler_light_cg.fx"/>
+					<var type="gles2" file="jungler_light_gles2_ps.fx"/>
+					<var type="gles3" file="jungler_light_gles2_ps.fx"/>
+					<var type="glsl" file="jungler_light_glsl_ps.fx"/>
+				</p>
+			</shader>
+			<renderproperty>
+				<Alpha>
+					<p param="BlendEnabled" value="false"/>
+					<p param="SrcBlend" value="SBM_SRC_ALPHA"/>
+					<p param="DstBlend" value="DBM_ONE_MINUS_SRC_ALPHA"/>
+					<p param="CompareEnabled" value="false"/>
+					<p param="Compare" value="CM_GEQUAL"/>
+					<p param="Reference" value="0"/>
+				</Alpha>
+				<Depth>
+					<p param="Enabled" value="true"/>
+					<p param="Writable" value="true"/>
+					<p param="Compare" value="CM_LEQUAL"/>
+				</Depth>
+				<Cull>
+					<p param="Enabled" value="false"/>
+					<p param="CCWOrder" value="true"/>
+				</Cull>
+				<Wire>
+					<p param="Enabled" value="false"/>
+				</Wire>
+			</renderproperty>
+		</pass>
+	</technique>
+	<technique name="jungler_pbr">
+		<pass name="P0">
+			<shader type="vs" name="jungler_pbr" ni="3" no="5" nc="6" ns="0">
+				<i>
+					<var index="0" name="modelPosition" vt="float3" vs="POSITION"/>
+					<var index="1" name="modelNormal" vt="float3" vs="NORMAL"/>
+					<var index="2" name="modelTCoord0" vt="float2" vs="TEXCOORD0"/>
+				</i>
+				<o>
+					<var index="0" name="clipPosition" vt="float4" vs="POSITION"/>
+					<var index="1" name="vertexTCoord0" vt="float2" vs="TEXCOORD0"/>
+					<var index="2" name="vertexTCoord1" vt="float2" vs="TEXCOORD1"/>
+					<var index="3" name="vertexTCoord2" vt="float4" vs="TEXCOORD2"/>
+					<var index="4" name="vertexTCoord3" vt="float4" vs="TEXCOORD3"/>
+					<var index="5" name="vertexTCoord4" vt="float4" vs="TEXCOORD4"/>
+				</o>
+				<c>
+					<var index="0" name="PVWMatrix" nr="4"/>
+					<var index="1" name="WMatrix" nr="4"/>
+					<var index="2" name="ProjectPVBSMatrix_Dir" nr="4"/>
+					<var index="3" name="CameraWorldPosition" nr="1"/>
+					<var index="4" name="FogParam" nr="1"/>
+					<var index="5" name="User" nr="1"/>
+				</c>
+				<p>
+					<var type="cg" file="jungler_light_cg.fx"/>
+					<var type="gles2" file="jungler_light_gles2_vs.fx"/>
+					<var type="gles3" file="jungler_light_gles2_vs.fx"/>
+					<var type="glsl" file="jungler_pbr_glsl_vs.fx"/>
+				</p>
+			</shader>
+			<shader type="ps" name="jungler_pbr" ni="5" no="2" nc="10" ns="7">
+				<i>
+					<var index="0" name="vertexTCoord0" vt="float2" vs="TEXCOORD0"/>
+					<var index="1" name="vertexTCoord1" vt="float2" vs="TEXCOORD1"/>
+					<var index="2" name="vertexTCoord2" vt="float4" vs="TEXCOORD2"/>
+					<var index="3" name="vertexTCoord3" vt="float4" vs="TEXCOORD3"/>
+					<var index="4" name="vertexTCoord4" vt="float4" vs="TEXCOORD4"/>
+				</i>
+				<o>
+					<var index="0" name="pixelColor" vt="float4" vs="COLOR0"/>
+					<var index="1" name="pixelColor1" vt="float4" vs="COLOR1"/>
+				</o>
+				<c>
+					<var index="0" name="UVOffset" nr="1"/>
+					<var index="1" name="FogColorHeight" nr="1"/>
+					<var index="2" name="FogColorDist" nr="1"/>
+					<var index="3" name="ShineEmissive" nr="1"/>
+					<var index="4" name="ShineAmbient" nr="1"/>
+					<var index="5" name="CameraWorldPosition" nr="1"/>
+					<var index="6" name="LightWorldDVector_Dir" nr="1"/>
+					<var index="7" name="LightAmbient_Dir" nr="1"/>
+					<var index="8" name="LightDiffuse_Dir" nr="1"/>
+					<var index="9" name="LightGroup" nr="6"/>
+				</c>
+				<s>
+					<var index="0" name="SampleBase" st="sampler2D" sf="LINEAR_LINEAR" sc_0="REPEAT" sc_1="REPEAT"/>
+					<var index="1" name="SampleColor" st="sampler2D" sf="LINEAR_LINEAR" sc_0="REPEAT" sc_1="REPEAT"/>
+					<var index="2" name="SampleNormal" st="sampler2D" sf="LINEAR_LINEAR" sc_0="REPEAT" sc_1="REPEAT"/>
+					<var index="3" name="SampleMetallic" st="sampler2D" sf="LINEAR_LINEAR" sc_0="REPEAT" sc_1="REPEAT"/>
+					<var index="4" name="SampleRoughness" st="sampler2D" sf="LINEAR_LINEAR" sc_0="REPEAT" sc_1="REPEAT"/>
+					<var index="5" name="SampleAO" st="sampler2D" sf="LINEAR_LINEAR" sc_0="REPEAT" sc_1="REPEAT"/>
+					<var index="6" name="SampleShadowDepth" st="sampler2D" sf="LINEAR" sc_0="CLAMP_BORDER" sc_1="CLAMP_BORDER"/>
+				</s>
+				<p>
+					<var type="cg" file="jungler_light_cg.fx"/>
+					<var type="gles2" file="jungler_light_gles2_ps.fx"/>
+					<var type="gles3" file="jungler_light_gles2_ps.fx"/>
+					<var type="glsl" file="jungler_pbr_glsl_ps.fx"/>
+				</p>
+			</shader>
+			<renderproperty>
+				<Alpha>
+					<p param="BlendEnabled" value="false"/>
+					<p param="SrcBlend" value="SBM_SRC_ALPHA"/>
+					<p param="DstBlend" value="DBM_ONE_MINUS_SRC_ALPHA"/>
+					<p param="CompareEnabled" value="false"/>
+					<p param="Compare" value="CM_GEQUAL"/>
+					<p param="Reference" value="0"/>
+				</Alpha>
+				<Depth>
+					<p param="Enabled" value="true"/>
+					<p param="Writable" value="true"/>
+					<p param="Compare" value="CM_LEQUAL"/>
+				</Depth>
+				<Cull>
+					<p param="Enabled" value="false"/>
+					<p param="CCWOrder" value="true"/>
+				</Cull>
+				<Wire>
+					<p param="Enabled" value="false"/>
+				</Wire>
+			</renderproperty>
+		</pass>
+	</technique>
+</material>

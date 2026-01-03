@@ -1,0 +1,70 @@
+!!ARBfp1.0
+# cgc version 3.1.0010, build date Feb  8 2012
+# command line args: -profile arbfp1
+# source file: blur_cg.fx
+#vendor NVIDIA Corporation
+#version 3.1.0.10
+#profile arbfp1
+#program p_blur
+#semantic p_blur.UVParam
+#semantic p_blur.Control
+#semantic SampleBase
+#var float2 vertexTCoord0 : $vin.TEXCOORD0 : TEX0 : 0 : 1
+#var float4 pixelColor : $vout.COLOR : COL : 1 : 1
+#var float4 UVParam :  : c[0] : 2 : 1
+#var float4 Control :  : c[1] : 3 : 1
+#var sampler2D SampleBase :  : texunit 0 : -1 : 1
+#const c[2] = 1 0.22702703 0.19459459 2
+#const c[3] = 0.12162162 3 0.054054055 4
+#const c[4] = 0.016216217
+PARAM c[5] = { program.local[0..1],
+		{ 1, 0.22702703, 0.19459459, 2 },
+		{ 0.12162162, 3, 0.054054055, 4 },
+		{ 0.016216217 } };
+TEMP R0;
+TEMP R1;
+TEMP R2;
+TEMP R3;
+MOV R0.x, c[2];
+ADD R0.y, R0.x, -c[1].x;
+RCP R0.x, c[0].y;
+MUL R3.zw, R0.x, R0.y;
+RCP R0.x, c[0].x;
+MOV R2.x, fragment.texcoord[0];
+ADD R2.y, -fragment.texcoord[0], c[2].x;
+MUL R3.x, R0, c[1];
+MOV R3.y, R3.w;
+ADD R0.xy, R2, R3;
+TEX R0, R0, texture[0], 2D;
+MUL R1, R0, c[2].z;
+TEX R0, R2, texture[0], 2D;
+MAD R0, R0, c[2].y, R1;
+ADD R2.zw, R2.xyxy, -R3.xyxy;
+TEX R1, R2.zwzw, texture[0], 2D;
+MAD R1, R1, c[2].z, R0;
+MUL R0.w, R3.z, c[2];
+MUL R0.z, R3.x, c[2].w;
+ADD R2.zw, R2.xyxy, -R0;
+ADD R0.xy, R2, R0.zwzw;
+TEX R0, R0, texture[0], 2D;
+MAD R1, R0, c[3].x, R1;
+TEX R0, R2.zwzw, texture[0], 2D;
+MAD R1, R0, c[3].x, R1;
+MUL R0.w, R3.z, c[3].y;
+MUL R0.z, R3.x, c[3].y;
+ADD R2.zw, R2.xyxy, -R0;
+ADD R0.xy, R2, R0.zwzw;
+TEX R0, R0, texture[0], 2D;
+MAD R1, R0, c[3].z, R1;
+TEX R0, R2.zwzw, texture[0], 2D;
+MAD R0, R0, c[3].z, R1;
+MUL R1.w, R3.z, c[3];
+MUL R1.z, R3.x, c[3].w;
+ADD R1.xy, R2, R1.zwzw;
+ADD R2.xy, R2, -R1.zwzw;
+TEX R1, R1, texture[0], 2D;
+MAD R0, R1, c[4].x, R0;
+TEX R1, R2, texture[0], 2D;
+MAD result.color, R1, c[4].x, R0;
+END
+# 41 instructions, 4 R-regs

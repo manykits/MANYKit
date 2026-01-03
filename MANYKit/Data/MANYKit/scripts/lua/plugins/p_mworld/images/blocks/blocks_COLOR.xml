@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker http://texturepacker.com-->
+<!-- $TexturePacker:SmartUpdate:965019f827a9a385fab4e09be70b7f6b$ -->
+<!--Format:
+n  => name of the sprite
+x  => sprite x pos in texture
+y  => sprite y pos in texture
+w  => sprite width (may be trimmed)
+h  => sprite height (may be trimmed)
+oX => sprite's x-corner offset (only available if trimmed)
+oY => sprite's y-corner offset (only available if trimmed)
+oW => sprite's original width (only available if trimmed)
+oH => sprite's original height (only available if trimmed)
+r => 'y' only set if sprite is rotated
+-->
+<TextureAtlas imagePath="blocks_color.png" width="2048" height="2048">
+    <sprite n="block1_COLOR" x="1236" y="390" w="128" h="128"/>
+    <sprite n="block2_COLOR" x="1358" y="2" w="256" h="256"/>
+    <sprite n="block_COLOR" x="1366" y="390" w="128" h="128"/>
+    <sprite n="blockyellow_COLOR" x="1106" y="390" w="128" h="128"/>
+    <sprite n="carpet_COLOR" x="976" y="390" w="128" h="128"/>
+    <sprite n="carpetflower_COLOR" x="846" y="390" w="128" h="128"/>
+    <sprite n="carpetred_COLOR" x="716" y="390" w="128" h="128"/>
+    <sprite n="floor_COLOR" x="586" y="390" w="128" h="128"/>
+    <sprite n="flower1_COLOR" x="326" y="390" w="128" h="128"/>
+    <sprite n="flower_COLOR" x="456" y="390" w="128" h="128"/>
+    <sprite n="glass1side_COLOR" x="1886" y="262" w="128" h="128"/>
+    <sprite n="glodenwall1r_COLOR" x="1626" y="262" w="128" h="128"/>
+    <sprite n="glodenwall_COLOR" x="1756" y="262" w="128" h="128"/>
+    <sprite n="goldblock_COLOR" x="1100" y="2" w="256" h="256"/>
+    <sprite n="goldenwall3_COLOR" x="842" y="2" w="256" h="256"/>
+    <sprite n="goldsolid_COLOR" x="584" y="2" w="256" h="256"/>
+    <sprite n="grass1_COLOR" x="1496" y="262" w="128" h="128"/>
+    <sprite n="grass2_COLOR" x="326" y="2" w="256" h="256"/>
+    <sprite n="grass2side_COLOR" x="2" y="1550" w="256" h="256"/>
+    <sprite n="grass_COLOR" x="164" y="1808" w="160" h="160"/>
+    <sprite n="grassside_COLOR" x="2" y="1808" w="160" h="160"/>
+    <sprite n="ice" x="1616" y="2" w="128" h="128"/>
+    <sprite n="meta_COLOR" x="1625" y="392" w="126" h="126"/>
+    <sprite n="sand1_COLOR" x="2" y="1292" w="256" h="256"/>
+    <sprite n="sand2_COLOR" x="1236" y="260" w="128" h="128"/>
+    <sprite n="sand_COLOR" x="1366" y="260" w="128" h="128"/>
+    <sprite n="siverblock4_COLOR" x="1106" y="260" w="128" h="128"/>
+    <sprite n="sliverblock3_COLOR" x="1496" y="392" w="127" h="127"/>
+    <sprite n="sliversolid_COLOR" x="2" y="1034" w="256" h="256"/>
+    <sprite n="solid1_COLOR" x="976" y="260" w="128" h="128"/>
+    <sprite n="solid2_COLOR" x="846" y="260" w="128" h="128"/>
+    <sprite n="solid_COLOR" x="2" y="776" w="256" h="256"/>
+    <sprite n="stone2_COLOR" x="586" y="260" w="128" h="128"/>
+    <sprite n="stone3_COLOR" x="2" y="518" w="256" h="256"/>
+    <sprite n="stone5_COLOR" x="2" y="260" w="256" h="256"/>
+    <sprite n="stone_COLOR" x="716" y="260" w="128" h="128"/>
+    <sprite n="stonefloor_COLOR" x="456" y="260" w="128" h="128"/>
+    <sprite n="stonepurple1_COLOR" x="1876" y="132" w="128" h="128"/>
+    <sprite n="stonepurple_COLOR" x="326" y="260" w="128" h="128"/>
+    <sprite n="wood1side_COLOR" x="1616" y="132" w="128" h="128"/>
+    <sprite n="wood1top_COLOR" x="1876" y="2" w="128" h="128"/>
+    <sprite n="wood2_COLOR" x="1746" y="2" w="128" h="128"/>
+    <sprite n="wood2side_COLOR" x="2" y="2" w="256" h="256"/>
+    <sprite n="wood_COLOR" x="1746" y="132" w="128" h="128"/>
+</TextureAtlas>

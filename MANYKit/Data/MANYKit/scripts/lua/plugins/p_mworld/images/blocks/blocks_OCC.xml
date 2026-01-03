@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker http://texturepacker.com-->
+<!-- $TexturePacker:SmartUpdate:3204055eb2c75e9233091e903f3024c2$ -->
+<!--Format:
+n  => name of the sprite
+x  => sprite x pos in texture
+y  => sprite y pos in texture
+w  => sprite width (may be trimmed)
+h  => sprite height (may be trimmed)
+oX => sprite's x-corner offset (only available if trimmed)
+oY => sprite's y-corner offset (only available if trimmed)
+oW => sprite's original width (only available if trimmed)
+oH => sprite's original height (only available if trimmed)
+r => 'y' only set if sprite is rotated
+-->
+<TextureAtlas imagePath="blocks_occ.png" width="2048" height="2048">
+    <sprite n="block1_OCC" x="984" y="328" w="128" h="128"/>
+    <sprite n="block2_OCC" x="328" y="328" w="256" h="256"/>
+    <sprite n="block_OCC" x="856" y="680" w="128" h="128"/>
+    <sprite n="blockyellow_OCC" x="856" y="504" w="128" h="128"/>
+    <sprite n="carpet_OCC" x="792" y="1736" w="128" h="128"/>
+    <sprite n="carpetflower_OCC" x="792" y="1560" w="128" h="128"/>
+    <sprite n="carpetpurple1_OCC" x="680" y="1384" w="128" h="128"/>
+    <sprite n="carpetred_OCC" x="680" y="1208" w="128" h="128"/>
+    <sprite n="floor_OCC" x="680" y="1032" w="128" h="128"/>
+    <sprite n="flower1_OCC" x="680" y="680" w="128" h="128"/>
+    <sprite n="flower_OCC" x="680" y="856" w="128" h="128"/>
+    <sprite n="glass1side_OCC" x="808" y="328" w="128" h="128"/>
+    <sprite n="glodenwall1r_OCC" x="616" y="1864" w="128" h="128"/>
+    <sprite n="glodenwall_OCC" x="680" y="504" w="128" h="128"/>
+    <sprite n="goldblock_OCC" x="1656" y="24" w="256" h="256"/>
+    <sprite n="goldenwall3_OCC" x="1352" y="24" w="256" h="256"/>
+    <sprite n="goldsolid_OCC" x="1048" y="24" w="256" h="256"/>
+    <sprite n="grass1_OCC" x="616" y="1688" w="128" h="128"/>
+    <sprite n="grass2_OCC" x="744" y="24" w="256" h="256"/>
+    <sprite n="grass2side_OCC" x="440" y="24" w="256" h="256"/>
+    <sprite n="grass_OCC" x="232" y="1848" w="160" h="160"/>
+    <sprite n="grassside_OCC" x="24" y="1848" w="160" h="160"/>
+    <sprite n="ice_OCC" x="328" y="632" w="128" h="128"/>
+    <sprite n="meta_OCC" x="856" y="1031" w="126" h="126"/>
+    <sprite n="sand1_OCC" x="24" y="1544" w="256" h="256"/>
+    <sprite n="sand2_OCC" x="504" y="1336" w="128" h="128"/>
+    <sprite n="sand_OCC" x="504" y="1512" w="128" h="128"/>
+    <sprite n="siverblock4_OCC" x="504" y="1160" w="128" h="128"/>
+    <sprite n="sliverblock3_OCC" x="856" y="856" w="127" h="127"/>
+    <sprite n="sliversolid_OCC" x="24" y="1240" w="256" h="256"/>
+    <sprite n="solid1_OCC" x="504" y="984" w="128" h="128"/>
+    <sprite n="solid2_OCC" x="504" y="808" w="128" h="128"/>
+    <sprite n="solid_OCC" x="24" y="936" w="256" h="256"/>
+    <sprite n="stone2_OCC" x="504" y="632" w="128" h="128"/>
+    <sprite n="stone3_OCC" x="24" y="632" w="256" h="256"/>
+    <sprite n="stone5_OCC" x="24" y="328" w="256" h="256"/>
+    <sprite n="stone_OCC" x="632" y="328" w="128" h="128"/>
+    <sprite n="stonefloor_OCC" x="440" y="1864" w="128" h="128"/>
+    <sprite n="stonepurple1_OCC" x="328" y="1512" w="128" h="128"/>
+    <sprite n="stonepurple_OCC" x="440" y="1688" w="128" h="128"/>
+    <sprite n="wood1side_OCC" x="328" y="1160" w="128" h="128"/>
+    <sprite n="wood1top_OCC" x="328" y="984" w="128" h="128"/>
+    <sprite n="wood2_OCC" x="328" y="808" w="128" h="128"/>
+    <sprite n="wood2side_OCC" x="24" y="24" w="256" h="256"/>
+    <sprite n="wood_OCC" x="328" y="1336" w="128" h="128"/>
+</TextureAtlas>

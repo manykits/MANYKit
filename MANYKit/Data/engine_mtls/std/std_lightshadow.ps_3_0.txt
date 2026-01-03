@@ -1,0 +1,138 @@
+ps_3_0
+// cgc version 3.1.0010, build date Feb  8 2012
+// command line args: -profile ps_3_0
+// source file: std_lightshadow_cg.fx
+//vendor NVIDIA Corporation
+//version 3.1.0.10
+//profile ps_3_0
+//program p_std_lightshadow
+//semantic p_std_lightshadow.UVOffset
+//semantic p_std_lightshadow.FogColorHeight
+//semantic p_std_lightshadow.FogColorDist
+//semantic SampleBase
+//semantic SampleShadowDepth
+//var float2 vertexTCoord0 : $vin.TEXCOORD0 : ATTR0 : 0 : 1
+//var float2 vertexTCoord1 : $vin.TEXCOORD1 : ATTR1 : 1 : 1
+//var float4 vertexTCoord2 : $vin.TEXCOORD2 : ATTR2 : 2 : 1
+//var float4 vertexTCoord3 : $vin.TEXCOORD3 : ATTR3 : 3 : 1
+//var float4 pixelColor : $vout.COLOR : COL : 4 : 1
+//var float4 UVOffset :  : c[0] : 5 : 1
+//var float4 FogColorHeight :  : c[1] : 6 : 1
+//var float4 FogColorDist :  : c[2] : 7 : 1
+//var sampler2D SampleBase :  : texunit 0 : -1 : 1
+//var sampler2D SampleShadowDepth :  : texunit 1 : -1 : 1
+//var <none>4 $kill_0000 : $vout.$kill : $kill : -1 : 0
+//const c[3] = 1 0.25 0.0099999998 0
+//const c[4] = -0.99000001 0.001 0.33329999 0.40000001
+//const c[5] = 2 3 4 -1
+//const c[6] = 0.2 1 0.5 0.58700001
+//const c[7] = 0.29899999 0.114
+dcl_2d s0
+dcl_2d s1
+def c3, 1.00000000, 0.25000000, 0.01000000, 0.00000000
+def c4, -0.99000001, 0.00100000, 0.33329999, 0.40000001
+def c5, 2.00000000, 3.00000000, 4.00000000, -1.00000000
+def c6, 0.20000000, 1.00000000, 0.50000000, 0.58700001
+def c7, 0.29899999, 0.11400000, 0, 0
+dcl_texcoord1 v1.xy
+dcl_texcoord0 v0.xy
+dcl_texcoord2 v2
+dcl_texcoord3 v3
+mov r0.x, v0
+add r0.y, -v0, c3.x
+add r0.xy, r0, c0
+mul r0.xy, r0, c0.zwzw
+texld r0, r0, s0
+mov r2, r0
+if_lt r0.w, c3.y
+mov_pp r0, -c3.x
+texkill r0.xyzw
+else
+add r0.y, v2.x, c4.x
+add r0.x, -v2, c3.z
+add r0.z, v2.y, c4.x
+cmp r0.y, r0, c3.x, c3.w
+cmp r0.x, r0, c3, c3.w
+add_pp_sat r0.x, r0, r0.y
+add r0.y, -v2, c3.z
+cmp r0.y, r0, c3.x, c3.w
+cmp r0.z, r0, c3.x, c3.w
+add_pp_sat r0.x, r0, r0.y
+add_pp_sat r0.x, r0, r0.z
+if_gt r0.x, c3.w
+mov r0.x, c3
+else
+mul r1.xy, -v2.w, c4.y
+mov r0.x, r1
+mov r0.yzw, c3.w
+add r0, v2, r0
+mov r1.zw, c3.w
+add r1, v2, r1
+texldp r3.x, r1, s1
+texldp r0.x, r0, s1
+texldp r1.x, v2, s1
+add r0.y, r1.x, r3.x
+add r0.x, r0.y, r0
+mul r0.x, r0, c4.z
+max_sat r0.x, r0, c4.w
+endif
+mul r0.xyz, r2, r0.x
+mov r0.w, r2
+mul r0, r0, v3
+add r1.xyz, r0, c5.w
+mov r1.w, c1
+add r1.w, c5.z, -r1
+abs r1.w, r1
+mad r1.xyz, r1, c6.z, c6.y
+cmp r1.xyz, -r1.w, r1, r0
+add r2.x, -v1, c3
+mad r0.x, -r2, c6, c6.y
+cmp r0.y, -r1.w, r0.x, v1.x
+add r1.xyz, r1, -c1
+mad r1.xyz, r0.y, r1, c1
+add r0.x, -v1.y, c3
+mad r0.x, -r0, c6, c6.y
+cmp r0.x, -r1.w, r0, v1.y
+add r1.xyz, r1, -c2
+mad r1.xyz, r0.x, r1, c2
+mul r0.x, r1.y, c6.w
+mad r0.x, r1, c7, r0
+mad r3.x, r1.z, c7.y, r0
+mov r0.x, c1.w
+mov r0.yz, r3.x
+add r2.x, c3, -r0
+abs r1.w, -c1
+cmp r0.x, -r1.w, c3, c3.w
+abs r1.w, r2.x
+cmp r2.w, -r1, c3.x, c3
+abs_pp r0.x, r0
+cmp_pp r1.w, -r0.x, c3.x, c3
+mul_pp r2.x, r1.w, r2.w
+mov r0.x, c3
+cmp r2.xyz, -r2.x, r3.x, r0
+mov r0.y, c1.w
+add r3.y, c5.x, -r0
+abs_pp r0.y, r2.w
+abs r2.w, r3.y
+cmp_pp r0.y, -r0, c3.x, c3.w
+mul_pp r1.w, r1, r0.y
+cmp r2.w, -r2, c3.x, c3
+mul_pp r3.y, r1.w, r2.w
+mov r0.xz, r3.x
+mov r0.y, c3.x
+cmp r2.xyz, -r3.y, r2, r0
+mov r0.xy, r3.x
+mov r0.z, c1.w
+abs_pp r2.w, r2
+add r3.x, c5.y, -r0.z
+cmp_pp r0.z, -r2.w, c3.x, c3.w
+mul_pp r1.w, r1, r0.z
+abs r2.w, r3.x
+cmp r2.w, -r2, c3.x, c3
+mov r0.z, c3.x
+mul_pp r1.w, r1, r2
+cmp r0.xyz, -r1.w, r2, r0
+add r0.xyz, r0, -r1
+mad oC0.xyz, r0, c2.w, r1
+mov oC0.w, r0
+endif

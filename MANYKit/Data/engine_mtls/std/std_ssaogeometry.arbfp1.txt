@@ -1,0 +1,27 @@
+!!ARBfp1.0
+OPTION ATI_draw_buffers;
+# cgc version 3.1.0010, build date Feb  8 2012
+# command line args: -profile arbfp1
+# source file: std_ssaogeometry_cg.fx
+#vendor NVIDIA Corporation
+#version 3.1.0.10
+#profile arbfp1
+#program p_std_ssaogeometry
+#var float3 fragPos : $vin.TEXCOORD0 : TEX0 : 0 : 1
+#var float2 texCoords : $vin.TEXCOORD1 :  : 1 : 0
+#var float3 normal : $vin.TEXCOORD2 : TEX2 : 2 : 1
+#var float4 pixelColor : $vout.COLOR : COL : 3 : 1
+#var float4 pixelColor1 : $vout.COLOR1 : COL1 : 4 : 1
+#var float4 pixelColor2 : $vout.COLOR2 : COL2 : 5 : 1
+#const c[0] = 0.60000002 1
+PARAM c[1] = { { 0.60000002, 1 } };
+TEMP R0;
+DP3 R0.x, fragment.texcoord[2], fragment.texcoord[2];
+RSQ R0.x, R0.x;
+MOV result.color[2], c[0].xxxy;
+MUL result.color[1].xyz, R0.x, fragment.texcoord[2];
+MOV result.color.xyz, fragment.texcoord[0];
+MOV result.color[1].w, c[0].y;
+MOV result.color.w, c[0].y;
+END
+# 7 instructions, 1 R-regs

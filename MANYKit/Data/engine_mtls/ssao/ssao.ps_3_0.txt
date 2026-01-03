@@ -1,0 +1,628 @@
+ps_3_0
+// cgc version 3.1.0010, build date Feb  8 2012
+// command line args: -profile ps_3_0
+// source file: ssao_cg.fx
+//vendor NVIDIA Corporation
+//version 3.1.0.10
+//profile ps_3_0
+//program p_ssao
+//semantic p_ssao.PMatrixSet
+//semantic p_ssao.Samples
+//semantic SampleGPosition
+//semantic SampleGNormal
+//semantic SampleNoise
+//var float2 vertexTCoord0 : $vin.TEXCOORD0 : ATTR0 : 0 : 1
+//var float4 pixelColor : $vout.COLOR : COL : 1 : 1
+//var float4x4 PMatrixSet :  : c[0], 4 : 2 : 1
+//var float4 Samples[0] :  : c[4] : 3 : 1
+//var float4 Samples[1] :  : c[5] : 3 : 1
+//var float4 Samples[2] :  : c[6] : 3 : 1
+//var float4 Samples[3] :  : c[7] : 3 : 1
+//var float4 Samples[4] :  : c[8] : 3 : 1
+//var float4 Samples[5] :  : c[9] : 3 : 1
+//var float4 Samples[6] :  : c[10] : 3 : 1
+//var float4 Samples[7] :  : c[11] : 3 : 1
+//var float4 Samples[8] :  : c[12] : 3 : 1
+//var float4 Samples[9] :  : c[13] : 3 : 1
+//var float4 Samples[10] :  : c[14] : 3 : 1
+//var float4 Samples[11] :  : c[15] : 3 : 1
+//var float4 Samples[12] :  : c[16] : 3 : 1
+//var float4 Samples[13] :  : c[17] : 3 : 1
+//var float4 Samples[14] :  : c[18] : 3 : 1
+//var float4 Samples[15] :  : c[19] : 3 : 1
+//var float4 Samples[16] :  : c[20] : 3 : 1
+//var float4 Samples[17] :  : c[21] : 3 : 1
+//var float4 Samples[18] :  : c[22] : 3 : 1
+//var float4 Samples[19] :  : c[23] : 3 : 1
+//var float4 Samples[20] :  : c[24] : 3 : 1
+//var float4 Samples[21] :  : c[25] : 3 : 1
+//var float4 Samples[22] :  : c[26] : 3 : 1
+//var float4 Samples[23] :  : c[27] : 3 : 1
+//var sampler2D SampleGPosition :  : texunit 0 : -1 : 1
+//var sampler2D SampleGNormal :  : texunit 1 : -1 : 1
+//var sampler2D SampleNoise :  : texunit 2 : -1 : 1
+//const c[28] = 1 0 284 160
+//const c[29] = 0.5 -0.025 2 3
+//const c[30] = 0.025 0.041666668 1
+dcl_2d s0
+dcl_2d s1
+dcl_2d s2
+def c28, 1.00000000, 0.00000000, 284.00000000, 160.00000000
+def c29, 0.50000000, -0.02500000, 2.00000000, 3.00000000
+def c30, 0.02500000, 0.04166667, 1.00000000, 0
+dcl_texcoord0 v0.xy
+mov r2.x, v0
+add r2.y, -v0, c28.x
+texld r1.xyz, r2, s1
+dp3 r0.w, r1, r1
+mul r0.xy, r2, c28.zwzw
+texld r0.xyz, r0, s2
+dp3 r1.w, r0, r0
+rsq r1.w, r1.w
+rsq r0.w, r0.w
+mul r4.xyz, r0.w, r1
+mul r0.xyz, r1.w, r0
+dp3 r0.w, r4, r0
+mad r0.xyz, r4, r0.w, r0
+dp3 r0.w, r0, r0
+rsq r0.w, r0.w
+mul r5.xyz, r0.w, r0
+mul r0.xyz, r4.zxyw, r5.yzxw
+mad r0.xyw, r4.yzzx, r5.zxzy, -r0.xyzz
+texld r3.xyz, r2, s0
+dp3 r1.y, r0.xyww, c4
+mov r2.z, c28.x
+mov r6.w, c28.x
+dp3 r1.z, r4, c4
+dp3 r1.x, r5, c4
+mad r2.xyw, -r1.xyzz, c29.x, r3.xyzz
+dp4 r0.z, r2.xywz, c3
+dp4 r1.y, r2.xywz, c1
+dp4 r1.x, r2.xywz, c0
+rcp r0.z, r0.z
+mul r1.xy, r1, r0.z
+mad r2.xy, r1, c29.x, c29.x
+dp3 r1.y, r0.xyww, c5
+dp3 r1.z, r4, c5
+dp3 r1.x, r5, c5
+mad r6.xyz, -r1, c29.x, r3
+dp4 r0.z, r6, c3
+dp4 r1.y, r6, c1
+dp4 r1.x, r6, c0
+rcp r0.z, r0.z
+mul r1.xy, r1, r0.z
+texld r0.z, r2, s0
+mad r1.xy, r1, c29.x, c29.x
+texld r2.z, r1, s0
+add r1.z, r3, -r0
+abs r1.x, r1.z
+add r1.y, r3.z, -r2.z
+abs r1.y, r1
+rcp r1.z, r1.y
+mul_sat r4.w, r1.z, c29.x
+rcp r1.x, r1.x
+mul_sat r1.x, r1, c29
+mad r1.y, -r1.x, c29.z, c29.w
+mul r1.x, r1, r1
+mul r3.w, r1.x, r1.y
+dp3 r1.y, r0.xyww, c6
+dp3 r6.y, r0.xyww, c8
+mov r6.w, c28.x
+dp3 r1.z, r4, c6
+dp3 r1.x, r5, c6
+mad r1.xyw, -r1.xyzz, c29.x, r3.xyzz
+mov r1.z, c28.x
+dp4 r2.x, r1.xywz, c3
+rcp r5.w, r2.x
+dp4 r2.y, r1.xywz, c1
+dp4 r2.x, r1.xywz, c0
+mul r1.xy, r2, r5.w
+add r2.y, r6.z, c30.x
+mad r1.xy, r1, c29.x, c29.x
+mul r1.z, r4.w, r4.w
+mad r2.x, -r4.w, c29.z, c29.w
+mul r2.x, r1.z, r2
+texld r1.z, r1, s0
+add_pp r1.x, r2.z, -r2.y
+add r1.y, r3.z, -r1.z
+cmp r1.x, r1, c28, c28.y
+mul r1.x, r1, r2
+add r2.x, r2.w, c30
+abs r1.y, r1
+add r1.w, r1, c30.x
+dp3 r2.y, r0.xyww, c7
+mov r2.w, c28.x
+add_pp r2.x, r0.z, -r2
+rcp r1.y, r1.y
+mul_sat r0.z, r1.y, c29.x
+cmp r1.y, r2.x, c28.x, c28
+mad r3.w, r1.y, r3, r1.x
+mad r1.x, -r0.z, c29.z, c29.w
+mul r0.z, r0, r0
+mul r0.z, r0, r1.x
+add_pp r1.w, r1.z, -r1
+dp3 r2.z, r4, c7
+dp3 r2.x, r5, c7
+mad r2.xyz, -r2, c29.x, r3
+dp4 r1.x, r2, c3
+rcp r4.w, r1.x
+dp4 r1.y, r2, c1
+dp4 r1.x, r2, c0
+mul r1.xy, r1, r4.w
+mad r1.xy, r1, c29.x, c29.x
+texld r1.z, r1, s0
+cmp r1.x, r1.w, c28, c28.y
+mad r1.w, r1.x, r0.z, r3
+add r0.z, r3, -r1
+mov r2.w, c28.x
+mov r4.w, c28.x
+dp3 r6.z, r4, c8
+dp3 r6.x, r5, c8
+mad r6.xyz, -r6, c29.x, r3
+dp4 r1.x, r6, c3
+rcp r2.x, r1.x
+dp4 r1.y, r6, c1
+dp4 r1.x, r6, c0
+mul r1.xy, r1, r2.x
+abs r0.z, r0
+mad r1.xy, r1, c29.x, c29.x
+rcp r2.x, r0.z
+texld r0.z, r1, s0
+mul_sat r1.x, r2, c29
+mad r2.x, -r1, c29.z, c29.w
+add r1.y, r3.z, -r0.z
+mul r1.x, r1, r1
+mul r1.x, r1, r2
+add r2.x, r2.z, c30
+add_pp r1.z, r1, -r2.x
+cmp r1.z, r1, c28.x, c28.y
+abs r1.y, r1
+rcp r1.y, r1.y
+mad r3.w, r1.z, r1.x, r1
+mul_sat r1.y, r1, c29.x
+dp3 r6.y, r0.xyww, c10
+mov r6.w, c28.x
+mad r1.z, -r1.y, c29, c29.w
+mul r1.x, r1.y, r1.y
+mul r1.w, r1.x, r1.z
+dp3 r1.y, r0.xyww, c9
+dp3 r1.z, r4, c9
+dp3 r1.x, r5, c9
+mad r2.xyz, -r1, c29.x, r3
+dp4 r1.x, r2, c3
+rcp r1.z, r1.x
+dp4 r1.y, r2, c1
+dp4 r1.x, r2, c0
+mul r1.xy, r1, r1.z
+add r1.z, r6, c30.x
+add_pp r0.z, r0, -r1
+mad r1.xy, r1, c29.x, c29.x
+cmp r0.z, r0, c28.x, c28.y
+mad r1.w, r0.z, r1, r3
+texld r1.z, r1, s0
+add r0.z, r3, -r1
+mov r2.w, c28.x
+dp3 r6.z, r4, c10
+dp3 r6.x, r5, c10
+mad r6.xyz, -r6, c29.x, r3
+dp4 r1.x, r6, c3
+rcp r2.x, r1.x
+dp4 r1.y, r6, c1
+dp4 r1.x, r6, c0
+mul r1.xy, r1, r2.x
+abs r0.z, r0
+mad r1.xy, r1, c29.x, c29.x
+rcp r2.x, r0.z
+texld r0.z, r1, s0
+mul_sat r1.x, r2, c29
+mad r2.x, -r1, c29.z, c29.w
+add r1.y, r3.z, -r0.z
+mul r1.x, r1, r1
+mul r1.x, r1, r2
+add r2.x, r2.z, c30
+add_pp r1.z, r1, -r2.x
+cmp r1.z, r1, c28.x, c28.y
+abs r1.y, r1
+rcp r1.y, r1.y
+mad r3.w, r1.z, r1.x, r1
+mul_sat r1.y, r1, c29.x
+dp3 r6.y, r0.xyww, c12
+mov r6.w, c28.x
+mad r1.z, -r1.y, c29, c29.w
+mul r1.x, r1.y, r1.y
+mul r1.w, r1.x, r1.z
+dp3 r1.y, r0.xyww, c11
+dp3 r1.z, r4, c11
+dp3 r1.x, r5, c11
+mad r2.xyz, -r1, c29.x, r3
+dp4 r1.x, r2, c3
+rcp r1.z, r1.x
+dp4 r1.y, r2, c1
+dp4 r1.x, r2, c0
+mul r1.xy, r1, r1.z
+add r1.z, r6, c30.x
+add_pp r0.z, r0, -r1
+mad r1.xy, r1, c29.x, c29.x
+cmp r0.z, r0, c28.x, c28.y
+mad r1.w, r0.z, r1, r3
+texld r1.z, r1, s0
+add r0.z, r3, -r1
+mov r2.w, c28.x
+dp3 r6.z, r4, c12
+dp3 r6.x, r5, c12
+mad r6.xyz, -r6, c29.x, r3
+dp4 r1.x, r6, c3
+rcp r2.x, r1.x
+dp4 r1.y, r6, c1
+dp4 r1.x, r6, c0
+mul r1.xy, r1, r2.x
+abs r0.z, r0
+mad r1.xy, r1, c29.x, c29.x
+rcp r2.x, r0.z
+texld r0.z, r1, s0
+mul_sat r1.x, r2, c29
+mad r2.x, -r1, c29.z, c29.w
+add r1.y, r3.z, -r0.z
+mul r1.x, r1, r1
+mul r1.x, r1, r2
+add r2.x, r2.z, c30
+add_pp r1.z, r1, -r2.x
+cmp r1.z, r1, c28.x, c28.y
+abs r1.y, r1
+rcp r1.y, r1.y
+mad r3.w, r1.z, r1.x, r1
+mul_sat r1.y, r1, c29.x
+dp3 r6.y, r0.xyww, c14
+mov r6.w, c28.x
+mad r1.z, -r1.y, c29, c29.w
+mul r1.x, r1.y, r1.y
+mul r1.w, r1.x, r1.z
+dp3 r1.y, r0.xyww, c13
+dp3 r1.z, r4, c13
+dp3 r1.x, r5, c13
+mad r2.xyz, -r1, c29.x, r3
+dp4 r1.x, r2, c3
+rcp r1.z, r1.x
+dp4 r1.y, r2, c1
+dp4 r1.x, r2, c0
+mul r1.xy, r1, r1.z
+add r1.z, r6, c30.x
+add_pp r0.z, r0, -r1
+mad r1.xy, r1, c29.x, c29.x
+cmp r0.z, r0, c28.x, c28.y
+mad r1.w, r0.z, r1, r3
+texld r1.z, r1, s0
+add r0.z, r3, -r1
+mov r2.w, c28.x
+dp3 r6.z, r4, c14
+dp3 r6.x, r5, c14
+mad r6.xyz, -r6, c29.x, r3
+dp4 r1.x, r6, c3
+rcp r2.x, r1.x
+dp4 r1.y, r6, c1
+dp4 r1.x, r6, c0
+mul r1.xy, r1, r2.x
+abs r0.z, r0
+mad r1.xy, r1, c29.x, c29.x
+rcp r2.x, r0.z
+texld r0.z, r1, s0
+mul_sat r1.x, r2, c29
+mad r2.x, -r1, c29.z, c29.w
+add r1.y, r3.z, -r0.z
+mul r1.x, r1, r1
+mul r1.x, r1, r2
+add r2.x, r2.z, c30
+add_pp r1.z, r1, -r2.x
+cmp r1.z, r1, c28.x, c28.y
+abs r1.y, r1
+rcp r1.y, r1.y
+mad r3.w, r1.z, r1.x, r1
+mul_sat r1.y, r1, c29.x
+dp3 r6.y, r0.xyww, c16
+mov r6.w, c28.x
+mad r1.z, -r1.y, c29, c29.w
+mul r1.x, r1.y, r1.y
+mul r1.w, r1.x, r1.z
+dp3 r1.y, r0.xyww, c15
+dp3 r1.z, r4, c15
+dp3 r1.x, r5, c15
+mad r2.xyz, -r1, c29.x, r3
+dp4 r1.x, r2, c3
+rcp r1.z, r1.x
+dp4 r1.y, r2, c1
+dp4 r1.x, r2, c0
+mul r1.xy, r1, r1.z
+add r1.z, r6, c30.x
+add_pp r0.z, r0, -r1
+mad r1.xy, r1, c29.x, c29.x
+cmp r0.z, r0, c28.x, c28.y
+mad r1.w, r0.z, r1, r3
+texld r1.z, r1, s0
+add r0.z, r3, -r1
+mov r2.w, c28.x
+dp3 r6.z, r4, c16
+dp3 r6.x, r5, c16
+mad r6.xyz, -r6, c29.x, r3
+dp4 r1.x, r6, c3
+rcp r2.x, r1.x
+dp4 r1.y, r6, c1
+dp4 r1.x, r6, c0
+mul r1.xy, r1, r2.x
+abs r0.z, r0
+mad r1.xy, r1, c29.x, c29.x
+rcp r2.x, r0.z
+texld r0.z, r1, s0
+mul_sat r1.x, r2, c29
+mad r2.x, -r1, c29.z, c29.w
+add r1.y, r3.z, -r0.z
+mul r1.x, r1, r1
+mul r1.x, r1, r2
+add r2.x, r2.z, c30
+add_pp r1.z, r1, -r2.x
+cmp r1.z, r1, c28.x, c28.y
+abs r1.y, r1
+rcp r1.y, r1.y
+mad r3.w, r1.z, r1.x, r1
+mul_sat r1.y, r1, c29.x
+dp3 r6.y, r0.xyww, c18
+mov r6.w, c28.x
+mad r1.z, -r1.y, c29, c29.w
+mul r1.x, r1.y, r1.y
+mul r1.w, r1.x, r1.z
+dp3 r1.y, r0.xyww, c17
+dp3 r1.z, r4, c17
+dp3 r1.x, r5, c17
+mad r2.xyz, -r1, c29.x, r3
+dp4 r1.x, r2, c3
+rcp r1.z, r1.x
+dp4 r1.y, r2, c1
+dp4 r1.x, r2, c0
+mul r1.xy, r1, r1.z
+add r1.z, r6, c30.x
+add_pp r0.z, r0, -r1
+mad r1.xy, r1, c29.x, c29.x
+cmp r0.z, r0, c28.x, c28.y
+mad r1.w, r0.z, r1, r3
+texld r1.z, r1, s0
+add r0.z, r3, -r1
+mov r2.w, c28.x
+dp3 r6.z, r4, c18
+dp3 r6.x, r5, c18
+mad r6.xyz, -r6, c29.x, r3
+dp4 r1.x, r6, c3
+rcp r2.x, r1.x
+dp4 r1.y, r6, c1
+dp4 r1.x, r6, c0
+mul r1.xy, r1, r2.x
+abs r0.z, r0
+mad r1.xy, r1, c29.x, c29.x
+rcp r2.x, r0.z
+texld r0.z, r1, s0
+mul_sat r1.x, r2, c29
+mad r2.x, -r1, c29.z, c29.w
+add r1.y, r3.z, -r0.z
+mul r1.x, r1, r1
+mul r1.x, r1, r2
+add r2.x, r2.z, c30
+add_pp r1.z, r1, -r2.x
+cmp r1.z, r1, c28.x, c28.y
+abs r1.y, r1
+rcp r1.y, r1.y
+mad r3.w, r1.z, r1.x, r1
+mul_sat r1.y, r1, c29.x
+dp3 r6.y, r0.xyww, c20
+mov r6.w, c28.x
+mad r1.z, -r1.y, c29, c29.w
+mul r1.x, r1.y, r1.y
+mul r1.w, r1.x, r1.z
+dp3 r1.y, r0.xyww, c19
+dp3 r1.z, r4, c19
+dp3 r1.x, r5, c19
+mad r2.xyz, -r1, c29.x, r3
+dp4 r1.x, r2, c3
+rcp r1.z, r1.x
+dp4 r1.y, r2, c1
+dp4 r1.x, r2, c0
+mul r1.xy, r1, r1.z
+add r1.z, r6, c30.x
+add_pp r0.z, r0, -r1
+mad r1.xy, r1, c29.x, c29.x
+cmp r0.z, r0, c28.x, c28.y
+mad r1.w, r0.z, r1, r3
+texld r1.z, r1, s0
+add r0.z, r3, -r1
+mov r2.w, c28.x
+dp3 r6.z, r4, c20
+dp3 r6.x, r5, c20
+mad r6.xyz, -r6, c29.x, r3
+dp4 r1.x, r6, c3
+rcp r2.x, r1.x
+dp4 r1.y, r6, c1
+dp4 r1.x, r6, c0
+mul r1.xy, r1, r2.x
+abs r0.z, r0
+mad r1.xy, r1, c29.x, c29.x
+rcp r2.x, r0.z
+texld r0.z, r1, s0
+mul_sat r1.x, r2, c29
+mad r2.x, -r1, c29.z, c29.w
+add r1.y, r3.z, -r0.z
+mul r1.x, r1, r1
+mul r1.x, r1, r2
+add r2.x, r2.z, c30
+add_pp r1.z, r1, -r2.x
+cmp r1.z, r1, c28.x, c28.y
+abs r1.y, r1
+rcp r1.y, r1.y
+mad r3.w, r1.z, r1.x, r1
+mul_sat r1.y, r1, c29.x
+dp3 r6.y, r0.xyww, c22
+mov r6.w, c28.x
+mad r1.z, -r1.y, c29, c29.w
+mul r1.x, r1.y, r1.y
+mul r1.w, r1.x, r1.z
+dp3 r1.y, r0.xyww, c21
+dp3 r1.z, r4, c21
+dp3 r1.x, r5, c21
+mad r2.xyz, -r1, c29.x, r3
+dp4 r1.x, r2, c3
+rcp r1.z, r1.x
+dp4 r1.y, r2, c1
+dp4 r1.x, r2, c0
+mul r1.xy, r1, r1.z
+add r1.z, r6, c30.x
+add_pp r0.z, r0, -r1
+mad r1.xy, r1, c29.x, c29.x
+cmp r0.z, r0, c28.x, c28.y
+mad r1.w, r0.z, r1, r3
+texld r1.z, r1, s0
+add r0.z, r3, -r1
+mov r2.w, c28.x
+dp3 r6.z, r4, c22
+dp3 r6.x, r5, c22
+mad r6.xyz, -r6, c29.x, r3
+dp4 r1.x, r6, c3
+rcp r2.x, r1.x
+dp4 r1.y, r6, c1
+dp4 r1.x, r6, c0
+mul r1.xy, r1, r2.x
+abs r0.z, r0
+mad r1.xy, r1, c29.x, c29.x
+rcp r2.x, r0.z
+texld r0.z, r1, s0
+mul_sat r1.x, r2, c29
+mad r2.x, -r1, c29.z, c29.w
+add r1.y, r3.z, -r0.z
+mul r1.x, r1, r1
+mul r1.x, r1, r2
+add r2.x, r2.z, c30
+add_pp r1.z, r1, -r2.x
+cmp r1.z, r1, c28.x, c28.y
+abs r1.y, r1
+rcp r1.y, r1.y
+mad r3.w, r1.z, r1.x, r1
+mul_sat r1.y, r1, c29.x
+dp3 r6.y, r0.xyww, c24
+mov r6.w, c28.x
+mad r1.z, -r1.y, c29, c29.w
+mul r1.x, r1.y, r1.y
+mul r1.w, r1.x, r1.z
+dp3 r1.y, r0.xyww, c23
+dp3 r1.z, r4, c23
+dp3 r1.x, r5, c23
+mad r2.xyz, -r1, c29.x, r3
+dp4 r1.x, r2, c3
+rcp r1.z, r1.x
+dp4 r1.y, r2, c1
+dp4 r1.x, r2, c0
+mul r1.xy, r1, r1.z
+add r1.z, r6, c30.x
+add_pp r0.z, r0, -r1
+mad r1.xy, r1, c29.x, c29.x
+cmp r0.z, r0, c28.x, c28.y
+mad r1.w, r0.z, r1, r3
+texld r1.z, r1, s0
+add r0.z, r3, -r1
+mov r2.w, c28.x
+dp3 r6.z, r4, c24
+dp3 r6.x, r5, c24
+mad r6.xyz, -r6, c29.x, r3
+dp4 r1.x, r6, c3
+rcp r2.x, r1.x
+dp4 r1.y, r6, c1
+dp4 r1.x, r6, c0
+mul r1.xy, r1, r2.x
+abs r0.z, r0
+mad r1.xy, r1, c29.x, c29.x
+rcp r2.x, r0.z
+texld r0.z, r1, s0
+mul_sat r1.x, r2, c29
+mad r2.x, -r1, c29.z, c29.w
+add r1.y, r3.z, -r0.z
+mul r1.x, r1, r1
+mul r1.x, r1, r2
+add r2.x, r2.z, c30
+add_pp r1.z, r1, -r2.x
+cmp r1.z, r1, c28.x, c28.y
+abs r1.y, r1
+rcp r1.y, r1.y
+mad r3.w, r1.z, r1.x, r1
+mul_sat r1.y, r1, c29.x
+dp3 r6.y, r0.xyww, c26
+mad r1.z, -r1.y, c29, c29.w
+mul r1.x, r1.y, r1.y
+mul r1.w, r1.x, r1.z
+dp3 r1.y, r0.xyww, c25
+dp3 r1.z, r4, c25
+dp3 r1.x, r5, c25
+mad r2.xyz, -r1, c29.x, r3
+dp4 r1.x, r2, c3
+rcp r1.z, r1.x
+mov r6.w, c28.x
+dp4 r1.y, r2, c1
+dp4 r1.x, r2, c0
+mul r1.xy, r1, r1.z
+add r1.z, r6, c30.x
+add_pp r0.z, r0, -r1
+mad r1.xy, r1, c29.x, c29.x
+cmp r0.z, r0, c28.x, c28.y
+texld r1.z, r1, s0
+mad r1.w, r0.z, r1, r3
+add r0.z, r3, -r1
+dp3 r6.z, r4, c26
+dp3 r6.x, r5, c26
+mad r6.xyz, -r6, c29.x, r3
+dp4 r1.x, r6, c3
+rcp r2.x, r1.x
+abs r0.z, r0
+dp4 r1.y, r6, c1
+dp4 r1.x, r6, c0
+mul r1.xy, r1, r2.x
+mad r1.xy, r1, c29.x, c29.x
+rcp r2.x, r0.z
+texld r0.z, r1, s0
+mul_sat r1.x, r2, c29
+mad r2.x, -r1, c29.z, c29.w
+add r1.y, r3.z, -r0.z
+mul r1.x, r1, r1
+mul r1.x, r1, r2
+add r2.x, r2.z, c30
+add_pp r1.z, r1, -r2.x
+cmp r1.z, r1, c28.x, c28.y
+abs r1.y, r1
+rcp r1.y, r1.y
+mad r2.x, r1.z, r1, r1.w
+mul_sat r1.y, r1, c29.x
+mad r1.z, -r1.y, c29, c29.w
+mul r1.x, r1.y, r1.y
+mul r1.w, r1.x, r1.z
+dp3 r1.y, r0.xyww, c27
+dp3 r1.x, r5, c27
+dp3 r1.z, r4, c27
+mad r4.xyz, -r1, c29.x, r3
+dp4 r0.x, r4, c3
+rcp r0.w, r0.x
+dp4 r0.y, r4, c1
+dp4 r0.x, r4, c0
+mul r0.xy, r0, r0.w
+add r0.w, r6.z, c30.x
+mad r0.xy, r0, c29.x, c29.x
+add_pp r0.w, r0.z, -r0
+texld r0.z, r0, s0
+cmp r0.x, r0.w, c28, c28.y
+mad r0.w, r0.x, r1, r2.x
+add r0.y, r3.z, -r0.z
+add r0.x, -r4.z, r0.z
+abs r0.y, r0
+add r0.x, r0, c29.y
+rcp r0.y, r0.y
+mul_sat r0.y, r0, c29.x
+mad r0.z, -r0.y, c29, c29.w
+cmp r0.x, r0, c28, c28.y
+abs_pp r0.x, r0
+mul r0.y, r0, r0
+mul r0.y, r0, r0.z
+cmp r0.x, -r0, c28.y, c28
+mad r0.x, r0, r0.y, r0.w
+mad oC0.xyz, -r0.x, c30.y, c30.z
+mov oC0.w, c28.x

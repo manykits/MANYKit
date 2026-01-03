@@ -1,0 +1,81 @@
+!!ARBfp1.0
+# cgc version 3.1.0010, build date Feb  8 2012
+# command line args: -profile arbfp1
+# source file: night_cg.fx
+#vendor NVIDIA Corporation
+#version 3.1.0.10
+#profile arbfp1
+#program p_night
+#semantic p_night.UVParam
+#semantic p_night.ShineEmissive
+#semantic p_night.Control
+#semantic SampleBase
+#var float2 vertexTCoord0 : $vin.TEXCOORD0 : TEX0 : 0 : 1
+#var float4 vertexTCoord1 : $vin.TEXCOORD1 : TEX1 : 1 : 1
+#var float4 pixelColor : $vout.COLOR : COL : 2 : 1
+#var float4 UVParam :  : c[0] : 3 : 1
+#var float4 ShineEmissive :  : c[1] : 4 : 1
+#var float4 Control :  : c[2] : 5 : 1
+#var sampler2D SampleBase :  : texunit 0 : -1 : 1
+#const c[3] = 1 0 2 3
+#const c[4] = 0.5 0.114 0.29899999 0.58700001
+PARAM c[5] = { program.local[0..2],
+		{ 1, 0, 2, 3 },
+		{ 0.5, 0.114, 0.29899999, 0.58700001 } };
+TEMP R0;
+TEMP R1;
+TEMP R2;
+TEMP R3;
+TEMP R4;
+MOV R1.x, c[4];
+ADD R1.w, -R1.x, c[2].x;
+ABS R2.w, -c[2];
+MOV R0.x, fragment.texcoord[0];
+ADD R0.y, -fragment.texcoord[0], c[3].x;
+MAD R0.xy, R0, c[0], c[0].zwzw;
+TEX R0, R0, texture[0], 2D;
+ADD R1.xyz, R0, -c[4].x;
+MUL R1.xyz, R1, R1.w;
+MAD R2.xyz, R1, c[3].z, R0;
+MUL R1.x, R2.y, c[4].w;
+MAD R1.x, R2, c[4].z, R1;
+MAD R1.w, R2.z, c[4].y, R1.x;
+MOV R1.xyz, c[3].xzww;
+ADD R3.x, R1, -c[2].w;
+CMP R0.xyz, -R2.w, R0, R1.w;
+ABS R3.x, R3;
+CMP R3.w, -R3.x, c[3].y, c[3].x;
+CMP R2.w, -R2, c[3].y, c[3].x;
+ABS R2.w, R2;
+CMP R2.w, -R2, c[3].y, c[3].x;
+ADD R1.z, R1, -c[2].w;
+ABS R1.z, R1;
+MOV R3.yz, R1.w;
+MUL R4.x, R2.w, R3.w;
+MOV R3.x, c[3];
+CMP R0.xyz, -R4.x, R3, R0;
+ADD R3.y, R1, -c[2].w;
+ABS R1.y, R3.w;
+ABS R3.w, R3.y;
+CMP R3.y, -R1, c[3], c[3].x;
+MUL R2.w, R2, R3.y;
+CMP R1.y, -R3.w, c[3], c[3].x;
+MUL R3.w, R2, R1.y;
+ABS R1.y, R1;
+CMP R1.y, -R1, c[3], c[3].x;
+MOV R3.xz, R1.w;
+MOV R3.y, c[3].x;
+CMP R0.xyz, -R3.w, R3, R0;
+MOV R3.xy, R1.w;
+CMP R1.z, -R1, c[3].y, c[3].x;
+MUL R1.y, R2.w, R1;
+MUL R1.y, R1, R1.z;
+MOV R3.z, c[3].x;
+CMP R0.xyz, -R1.y, R3, R0;
+ADD R0.xyz, R0, -R2;
+ADD R1.x, R1, -c[2].y;
+MAD R0.xyz, R1.x, R0, R2;
+MUL R0, R0, fragment.texcoord[1];
+MUL result.color, R0, c[1];
+END
+# 50 instructions, 5 R-regs

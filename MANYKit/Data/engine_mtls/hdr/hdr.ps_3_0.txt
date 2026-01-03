@@ -1,0 +1,45 @@
+ps_3_0
+// cgc version 3.1.0010, build date Feb  8 2012
+// command line args: -profile ps_3_0
+// source file: hdr_cg.fx
+//vendor NVIDIA Corporation
+//version 3.1.0.10
+//profile ps_3_0
+//program p_hdr
+//semantic p_hdr.Control
+//semantic SampleBase
+//var float2 vertexTCoord0 : $vin.TEXCOORD0 : ATTR0 : 0 : 1
+//var float4 pixelColor : $vout.COLOR : COL : 1 : 1
+//var float4 Control :  : c[0] : 2 : 1
+//var sampler2D SampleBase :  : texunit 0 : -1 : 1
+//const c[1] = 1 0 0.45454544
+dcl_2d s0
+def c1, 1.00000000, 0.00000000, 0.45454544, 0
+dcl_texcoord0 v0.xy
+add r0.y, -v0, c1.x
+mov r0.x, v0
+texld r0.xyz, r0, s0
+mov r0.w, c1.y
+mov r1.xyz, r0
+if_gt c0.x, r0.w
+add r0.xyz, r1, c1.x
+rcp r0.x, r0.x
+rcp r0.z, r0.z
+rcp r0.y, r0.y
+mul r1.xyz, r1, r0
+pow r0, r1.x, c1.z
+mov oC0.x, r0
+pow r0, r1.y, c1.z
+pow r2, r1.z, c1.z
+mov oC0.y, r0
+mov oC0.z, r2
+mov oC0.w, c1.x
+else
+pow r0, r1.x, c1.z
+mov oC0.x, r0
+pow r0, r1.y, c1.z
+pow r2, r1.z, c1.z
+mov oC0.y, r0
+mov oC0.z, r2
+mov oC0.w, c1.x
+endif

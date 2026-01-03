@@ -1,0 +1,154 @@
+vs_1_1
+// cgc version 3.1.0010, build date Feb  8 2012
+// command line args: -profile vs_1_1 -profileopts dcls
+// source file: terrain_walk_cg.fx
+//vendor NVIDIA Corporation
+//version 3.1.0.10
+//profile vs_1_1
+//program v_terrain_walk
+//semantic v_terrain_walk.PVWMatrix
+//semantic v_terrain_walk.WMatrix
+//semantic v_terrain_walk.CameraWorldPosition
+//semantic v_terrain_walk.LightWorldDVector_Dir
+//semantic v_terrain_walk.ShineEmissive
+//semantic v_terrain_walk.ShineAmbient
+//semantic v_terrain_walk.ShineDiffuse
+//semantic v_terrain_walk.ShineSpecular
+//semantic v_terrain_walk.LightAmbient_Dir
+//semantic v_terrain_walk.LightDiffuse_Dir
+//semantic v_terrain_walk.LightSpecular_Dir
+//semantic v_terrain_walk.LightGroup
+//semantic v_terrain_walk.FogParam
+//semantic SampleWalk
+//var float3 modelPosition : $vin.POSITION0 : ATTR0 : 0 : 1
+//var float3 modelNormal : $vin.NORMAL0 : ATTR1 : 1 : 1
+//var float2 modelTCoord0 : $vin.TEXCOORD0 : ATTR2 : 2 : 1
+//var float2 modelTCoord1 : $vin.TEXCOORD1 : ATTR3 : 3 : 1
+//var float4 clipPosition : $vout.POSITION : HPOS : 4 : 1
+//var float4 vertexColor : $vout.COLOR0 : COL0 : 5 : 1
+//var float2 vertexTCoord0 : $vout.TEXCOORD0 : TEX0 : 6 : 1
+//var float2 vertexTCoord1 : $vout.TEXCOORD1 : TEX1 : 7 : 1
+//var float2 vertexTCoord2 : $vout.TEXCOORD2 : TEX2 : 8 : 1
+//var float4x4 PVWMatrix :  : c[0], 4 : 9 : 1
+//var float4x4 WMatrix :  : c[4], 4 : 10 : 1
+//var float4 CameraWorldPosition :  : c[8] : 11 : 1
+//var float4 LightWorldDVector_Dir :  : c[9] : 12 : 1
+//var float4 ShineEmissive :  : c[10] : 13 : 1
+//var float4 ShineAmbient :  : c[11] : 14 : 1
+//var float4 ShineDiffuse :  : c[12] : 15 : 1
+//var float4 ShineSpecular :  : c[13] : 16 : 1
+//var float4 LightAmbient_Dir :  : c[14] : 17 : 1
+//var float4 LightDiffuse_Dir :  : c[15] : 18 : 1
+//var float4 LightSpecular_Dir :  : c[16] : 19 : 1
+//var float4 LightGroup[0] :  : c[17] : 20 : 1
+//var float4 LightGroup[1] :  : c[18] : 20 : 1
+//var float4 LightGroup[2] :  : c[19] : 20 : 1
+//var float4 LightGroup[3] :  : c[20] : 20 : 1
+//var float4 LightGroup[4] :  : c[21] : 20 : 1
+//var float4 LightGroup[5] :  : c[22] : 20 : 1
+//var float4 FogParam :  : c[23] : 21 : 1
+//var sampler2D SampleWalk :  :  : -1 : 0
+//const c[24] = 1 0.5 0
+def c24, 1.00000000, 0.50000000, 0.00000000, 0
+dcl_position0 v0
+dcl_texcoord0 v2
+dcl_texcoord1 v3
+dcl_normal0 v1
+mov r0.w, c24.x
+mov r0.xyz, v0
+dp4 r4.w, r0, c6
+mov r3.z, r4.w
+dp4 r3.x, r0, c4
+dp4 r3.y, r0, c5
+add r1.xyz, -r3, c8
+dp3 r1.w, r1, r1
+rsq r3.w, r1.w
+mad r1.xyz, r1, r3.w, -c9
+mul r1.xyz, r1, c24.y
+dp3 r1.w, r1, r1
+rsq r1.w, r1.w
+mul r5.xyz, r1.w, r1
+mov r1, c13
+dp3 r4.z, v1, c6
+dp3 r4.x, v1, c4
+dp3 r4.y, v1, c5
+dp3 r2.x, r4, r4
+rsq r5.w, r2.x
+mul r2, c16, r1
+mul r4.xyz, r5.w, r4
+dp3 r1.x, r4, r5
+mov r1.z, r2.w
+max r1.xy, r1.x, c24.z
+lit r1.z, r1.xyzz
+dp3 r2.w, r4, -c9
+mov r5.xyz, c12
+add r1.xyw, -r3.xyzz, c17.xyzz
+max r2.w, r2, c24.z
+mul r5.xyz, c15, r5
+mul r6.xyz, r5, r2.w
+mov r5.xyz, c11
+mad r5.xyz, c14, r5, r6
+mad r2.xyz, r1.z, r2, r5
+dp3 r2.w, r1.xyww, r1.xyww
+rsq r1.z, r2.w
+mul r1.xyz, r1.z, r1.xyww
+rcp r5.x, c17.w
+mul r2.w, r2, r5.x
+dp3 r1.x, r4, r1
+max r1.w, r1.x, c24.z
+mul r2.xyz, r2, c14.w
+mov r1.xyz, c18
+mul r1.xyz, c12, r1
+mad r2.w, -r2, r5.x, c24.x
+mul r1.xyz, r1, r1.w
+max r1.w, r2, c24.z
+add r2.xyz, r2, c10
+mad r2.xyz, r1, r1.w, r2
+add r1.xyz, -r3, c19
+dp3 r2.w, r1, r1
+rsq r5.y, r2.w
+mul r1.xyz, r5.y, r1
+add r3.xyz, -r3, c21
+dp3 r1.w, r3, r3
+rsq r5.x, r1.w
+rcp r5.y, c19.w
+mul r2.w, r2, r5.y
+mad r2.w, -r2, r5.y, c24.x
+mul r3.xyz, r5.x, r3
+dp3 r1.x, r4, r1
+max r5.x, r1, c24.z
+mov r1.xyz, c20
+mul r1.xyz, c12, r1
+max r2.w, r2, c24.z
+mul r1.xyz, r1, r5.x
+mad r1.xyz, r1, r2.w, r2
+dp3 r2.w, r4, r3
+rcp r3.x, c21.w
+mov r2.xyz, c22
+mul r1.w, r1, r3.x
+add r3.y, c23.w, -c23.z
+mad r1.w, -r1, r3.x, c24.x
+max r2.w, r2, c24.z
+mul r2.xyz, c12, r2
+mul r2.xyz, r2, r2.w
+rcp r2.w, r3.w
+max r1.w, r1, c24.z
+mad oD0.xyz, r2, r1.w, r1
+add r1.x, c23.y, -c23
+rcp r1.y, r1.x
+add r1.x, r4.w, -c23
+mul r1.x, r1, r1.y
+min r1.x, r1, c24
+rcp r3.y, r3.y
+add r2.w, -r2, c23
+mul r2.w, r2, r3.y
+min r2.w, r2, c24.x
+max oT2.x, r2.w, c24.z
+dp4 oPos.w, r0, c3
+dp4 oPos.z, r0, c2
+dp4 oPos.y, r0, c1
+dp4 oPos.x, r0, c0
+max oT2.y, r1.x, c24.z
+mov oT0.xy, v2
+mov oT1.xy, v3
+mov oD0.w, c12
