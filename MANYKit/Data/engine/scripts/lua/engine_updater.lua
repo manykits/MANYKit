@@ -186,8 +186,8 @@ function engine_OnDownloadedWebEngineUpdaterVersion(strMem)
         if 0==cInt then
             local data = jsonData:GetMember("data")
 
-            local engine = data:GetMember("engine"):ToString()
-            local updater = data:GetMember("updater"):ToString()
+            local engine = data:GetMember("versionengine"):ToString()
+            local updater = data:GetMember("versionupdater"):ToString()
             local engine_downloadurl = data:GetMember("engine_downloadurl"):ToString()
 			local engine_subpath = data:GetMember("engine_subpath"):ToString()
             
