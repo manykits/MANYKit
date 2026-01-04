@@ -685,7 +685,7 @@ function p_minnastart:_RegistOnPropertyInfo()
     self._scriptControl:BeginPropertyCata("MinnaStart")
 
     self._scriptControl:AddPropertyClass("Version", "版本更新")
-    self._scriptControl:AddPropertyButton("ReadMeDoc", "文档", "查看文档")
+    self._scriptControl:AddPropertyButton("ReadMeDoc", "文档", "查看文档/下载MinnaJS")
     self._scriptControl:AddPropertyString("UrlManykitMinna", "UrlManykitMinna", self._urlmanykitminna, false, false)
 	self._scriptControl:AddPropertyButton("BtnUpdateFiles", "MinnaJS检查更新", "检查更新")
 
@@ -898,6 +898,17 @@ end
 -------------------------------------------------------------------------------
 function p_minnastart:_StartUpdateFiles()
     print(self._name.." p_minnastart:_StartUpdateFiles")
+
+    local localfilelist = self._basePath.."manykit-minna/filelist.xml"
+    if not PX2_RM:IsFileFloderExist(localfilelist) then
+        print("ERROR: filelist.xml does not exist: "..localfilelist)
+        coroutine.wrap(function()
+            manykit_ShowInfoPopUp("info", "本地MinnaJS不存在,请先下载", "", "")
+            sleep(2.0)
+            self:_HideUpdateFrame()
+        end)()
+        return
+    end
     
     -- 确保 basePath 以 / 结尾
     local basePath = self._basePath
@@ -912,7 +923,7 @@ function p_minnastart:_StartUpdateFiles()
     end
     
     -- 构建远程 filelist.xml 的 URL 和本地路径
-    local baseURL = self._urlmanykitminna.."/ota/Achieve/manykit-minna/"
+    local baseURL = self._urlmanykitminna.."/manykit-minna/"
     --local baseURL = "http://"..self._ipminna..":" .. self._portminna .. "/ota/Achieve/manykit-minna/"
     local filelistURL = baseURL .. "filelist.xml"
     local filelistTempPath = workDir .. "filelist_temp.xml"

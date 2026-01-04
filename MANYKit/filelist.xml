@@ -1,4 +1,4 @@
-<filelist version="1.0.0.0">
+<filelist version="1.0.0.1">
 	<file filename="AppPlayer64.exe" md5="3c39237eaf9ad46df3a1e9f6897a6546"/>
 	<file filename="AppPlayer64C.exe" md5="507b25b93e89bf933a5d5d30386cf6de"/>
 	<file filename="cefwin/chrome_100_percent.pak" md5="e05272140da2c52a9ebef1700e7c565f"/>
@@ -977,7 +977,7 @@
 	<file filename="Data/MANYKit/scripts/lua/plugins/p_minna/minna.png" md5="3cc3f6ba42b49d9f4711a689fd9e3a56"/>
 	<file filename="Data/MANYKit/scripts/lua/plugins/p_minna/minnback.png" md5="0ded591b435a145ed80545bde91376db"/>
 	<file filename="Data/MANYKit/scripts/lua/plugins/p_minna/p_minna.lua" md5="9fbd0ccc89cf04b01474e9aa5c5e8666"/>
-	<file filename="Data/MANYKit/scripts/lua/plugins/p_minna/p_minnastart.lua" md5="db285a0d868a08c0f81d7eb3579346c1"/>
+	<file filename="Data/MANYKit/scripts/lua/plugins/p_minna/p_minnastart.lua" md5="aa2616be43234b095d027791562d45a7"/>
 	<file filename="Data/MANYKit/scripts/lua/plugins/p_mworld/images/blocks/block.png" md5="0166385c724e44107ceb9abd9078cd92"/>
 	<file filename="Data/MANYKit/scripts/lua/plugins/p_mworld/images/blocks/block1.png" md5="79ce06484f0b456f4bdf9c2bc483deb5"/>
 	<file filename="Data/MANYKit/scripts/lua/plugins/p_mworld/images/blocks/block1_COLOR.png" md5="6dc02001f49cf9c4a00626a7640ca01f"/>
